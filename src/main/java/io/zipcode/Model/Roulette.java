@@ -8,6 +8,7 @@ import java.util.*;
 public class Roulette {
     // Fields --------------------------------------
     private Map<Integer, String> wheel;
+    private List<RouletteHandler> rouletteHandlers;
     private List<Player> winners;
     private boolean isRunning;
     private String color;
@@ -19,6 +20,10 @@ public class Roulette {
         this.wheel = new HashMap<Integer, String>();
         this.winners = new ArrayList<Player>();
         this.fillWheel();
+        this.rouletteHandlers = new ArrayList<RouletteHandler>();
+        for(Player player : players) {
+            rouletteHandlers.add(new RouletteHandler());
+        }
     }
     // ----------------------------------------------
 
