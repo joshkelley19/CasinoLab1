@@ -29,6 +29,13 @@ public class AgramTest {
 
         players = Arrays.asList(playArr);
         game.playAgram(players, deck);
+        for (int i = 0; i < 4; i++) {
+            try {
+                game.playTrick(i, 7);
+            } catch (CannotPlayCardException e) {
+                System.out.println("Error");
+            }
+        }
 
         assertEquals("Player 4 should have won the trick", 3, game.getWonTrick());
 
@@ -46,6 +53,13 @@ public class AgramTest {
 
         players = Arrays.asList(playArr);
         game.playAgram(players, deck);
+        for (int i = 0; i < 4; i++) {
+            try {
+                game.playTrick(i, 7);
+            } catch (CannotPlayCardException e) {
+                System.out.println("Error");
+            }
+        }
 
         assertEquals("The played suit should be hearts", "HEARTS", game.getPlayedSuit());
 
@@ -63,6 +77,14 @@ public class AgramTest {
 
         players = Arrays.asList(playArr);
         game.playAgram(players, deck);
+        for (int i = 0; i < 4; i++) {
+            try {
+                game.playTrick(i, 7);
+            } catch (CannotPlayCardException e) {
+                System.out.println("Error");
+            }
+        }
+
 
         int[] expected = {3, 5, 6, 8};
 
@@ -81,6 +103,13 @@ public class AgramTest {
 
         players = Arrays.asList(playArr);
         game.playAgram(players, deck);
+        for (int i = 0; i < 4; i++) {
+            try {
+                game.playTrick(i, 7);
+            } catch (CannotPlayCardException e) {
+                System.out.println("Error");
+            }
+        }
 
 
         assertEquals("The list of players should match up︎", players, game.getPlayers());
@@ -98,6 +127,13 @@ public class AgramTest {
 
         players = Arrays.asList(playArr);
         game.playAgram(players, deck);
+        for (int i = 0; i < 4; i++) {
+            try {
+                game.playTrick(i, 7);
+            } catch (CannotPlayCardException e) {
+                System.out.println("Error");
+            }
+        }
 
 
         assertTrue("The hand should be able to play the correct suit︎", game.canPlaySuit(game.getHand(0)));

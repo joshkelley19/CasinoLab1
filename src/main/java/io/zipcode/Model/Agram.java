@@ -65,13 +65,6 @@ public class Agram {
 
         }
 
-        for (int i = 0; i < 6; i++) {
-            playTrick(hands);
-            resolveOrder();
-
-        }
-
-
     }
 
     public void playAgram(List<Player> players, List<Card> setDeck) {
@@ -92,20 +85,17 @@ public class Agram {
             }
 
         }
-            playTrick(hands);
-            resolveOrder();
+
     }
 
 
-    public void playTrick (CardHandler[] hands) {
+    public void playTrick (int playerNum, int cardIndex) throws CannotPlayCardException {
 
         int cardVal;
 
-        for (int i = 0; i < playerCount; i++) {
-            cardVal = getPlayedCard(hands[i]);
-            System.out.println(cardVal);
-            playCard(cardVal, i);
-        }
+        cardVal = getPlayedCard(hands[playerNum], cardIndex);
+        System.out.println(cardVal);
+        playCard(cardVal, playerNum);
 
     }
 
@@ -118,7 +108,6 @@ public class Agram {
     public boolean canPlaySuit (CardHandler hand) {
 
         if (playedSuit.equals("")) {
-            playedSuit = hand.getHand().get(0).getSuit();
             return true;
         }
 
@@ -132,9 +121,32 @@ public class Agram {
     }
 
 
-    public int getPlayedCard (CardHandler hand) {
+    public int getPlayedCard (CardHandler hand, int cardIndex) throws CannotPlayCardException {
 
-        return playForNonHuman(hand);
+        if (cardIndex > 6) {
+
+            return playForNonHuman(hand);
+        }
+
+        Card card = hand.getHand().get(cardIndex);
+        String suit = card.getSuit();
+
+        if (playedSuit.equals("")) {
+
+            playedSuit = suit;
+            hand.getHand().remove(cardIndex);
+            return ranks.indexOf(card.getRank()) + 3;
+
+        } else if (!canPlaySuit(hand)) {
+
+            hand.getHand().remove(cardIndex);
+            return 0;
+
+        } else {
+            throw new CannotPlayCardException();
+        }
+
+
     }
 
     private int playForNonHuman (CardHandler hand) {
@@ -146,7 +158,7 @@ public class Agram {
         if (canPlaySuit(hand)) {
             for (Card card : hand.getHand()) {
                 cardVal = ranks.indexOf(card.getRank()) + 3;
-                if (card.getSuit().equals(playedSuit) && cardVal < lowest) {
+                if ((card.getSuit().equals(playedSuit) || playedSuit.equals("")) && cardVal < lowest) {
                     lowest = cardVal ;
                     index = hand.getHand().indexOf(card);
                 }
@@ -156,11 +168,16 @@ public class Agram {
             lowest = 0;
         }
 
+        playedSuit = (playedSuit.equals("")) ? hand.getHand().get(index).getSuit(): playedSuit;
+
         hand.getHand().remove(index);
         return lowest;
     }
 
-    private void resolveOrder () {
+    public void resolveOrder () {
+
+        playedSuit = "";
+        roundCount++;
 
     }
 
