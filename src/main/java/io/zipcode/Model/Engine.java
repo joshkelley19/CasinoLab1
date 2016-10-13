@@ -1,12 +1,17 @@
 package io.zipcode.Model;
 
+import io.zipcode.View.Display;
 import java.util.ArrayList;
 
 /**
  * Created by joshuakelley on 10/11/16.
  */
 public class Engine {
-    public ArrayList<Player> players = new ArrayList<>();
+
+    //Instance variables //
+    Roulette roulette;
+
+    public ArrayList<Player> players = new ArrayList<>();//player info passed through casino,can manipulate without passing in/returning
 
     public void createPlayer(String name,int balance){
         players.add(new Player(name,balance));
@@ -17,4 +22,13 @@ public class Engine {
         return bet;
     }
 
+    public int playRoulette(int bet, int betType, int numberGuess) {
+        roulette = new Roulette(players);
+
+        roulette.getRouletteHandler(0).getPlayer().setBet(placeBet(bet));
+        roulette.placeBetType(0, betType);
+        roulette.askforNumber(0, numberGuess);
+        roulette.spinWheel();
+        return roulette.payoff();
+    }
 }

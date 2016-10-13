@@ -7,6 +7,7 @@ import io.zipcode.Model.InvalidBetException;
  * Created by joshuakelley on 10/11/16.
  */
 public class Casino {
+
     Engine engine = new Engine();
     UserInput ui = new UserInput();
 
@@ -32,8 +33,8 @@ public class Casino {
         //regex
         try{
             switch (game.toUpperCase()){
-                //case "SLOTS": playSlots();break;
-                //case "BLACKJACK": playBlackjack();break;
+//                case "SLOTS": playSlots();break;
+//                case "BLACKJACK": playBlackjack();break;
                 case "ROULETTE": playRoulette();break;
 //                case "AGRAM": playAgram();break;
 //                case "GO FISH": playGoFish();break;
@@ -62,7 +63,6 @@ public class Casino {
         String response;
         Display.rouletteWelcome();
         do{
-
             Display.rouletteAskBetType();
             betType=ui.getInt();
             bet=requestBet();
@@ -74,80 +74,9 @@ public class Casino {
             response = ui.getString();
         }while (response.toUpperCase()=="YES");
     }
-//
-//    public void playSlots(){
-//        int bet;
-//        Display.slotsWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.result(engine.playSlots(bet));
-//        }while (engine.isRunning());
-//    }
-//
-//    public void playBaccarat(){
-//        int bet;
-//        Display.baccaratWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.Baccarat();
-//            Display.result(engine.playBaccarat(bet));
-//        }while (engine.gameRunning);
-//    }
-//
-//    public void playBlackjack(){
-//        int bet;
-//        Display.blackjackWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.result(engine.playBlackjack(bet));
-//        }while (engine.gameRunning);
-//    }
-//
-//    public void playAgram(){
-//        int bet;
-//        Display.agramWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.result(engine.playAgram(bet));
-//        }while (engine.gameRunning);
-//    }
-//
-//    public void playGoFish(){
-//        int bet;
-//        Display.goFishWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.result(engine.playGoFish(bet));
-//        }while (engine.gameRunning);
-//    }
-//
-//    public void playRussianRoulette(){
-//        int bet;
-//        Display.russianRouletteWelcome();
-//        do{
-//            Display.pressEnter();
-//            Display.result(engine.playRussianRoulette());
-//        }while (engine.gameRunning);
-//    }
-//
-//    public void playWar(){
-//        int bet;
-//        Display.warWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.result(engine.playWar(bet));
-//        }while (engine.gameRunning);
-//    }
-//
+
     public int requestBet(){
         Display.requestBet();
         return ui.getInt();
     }
-//
-//    public static void main(String[] args) {
-//        Casino casino = new Casino();
-//
-//        casino.startGame();
-//        casino.enterCasino();
-//    }
 }
