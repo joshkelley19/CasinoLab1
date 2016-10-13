@@ -126,6 +126,9 @@ public class Casino {
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < length; j++) {
+                if (j > 0 ) {
+                    Display.print("The current suit is " + engine.getAgramPlayedSuit());
+                }
                 startingPlayer = engine.getAgramStartingPlayer();
                 currentPlayer = (startingPlayer + j) % length;
                 Display.print("Player " + (currentPlayer + 1) + " select a card by number.");

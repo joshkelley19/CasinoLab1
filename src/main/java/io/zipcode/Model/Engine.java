@@ -80,4 +80,10 @@ public class Engine {
         return  result.toString();
     }
 
+    public String getAgramPlayedSuit () {
+
+        return agram.getPlayedSuit();
+
+    }
+
 }
