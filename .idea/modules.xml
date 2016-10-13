@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CasinoLab1.iml" filepath="$PROJECT_DIR$/CasinoLab1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CasinoLab.iml" filepath="$PROJECT_DIR$/CasinoLab.iml" />
     </modules>
   </component>
 </project>
