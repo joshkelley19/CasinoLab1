@@ -14,7 +14,7 @@ public class Deck {
 
     public Deck() {
         this.fillDeck();
-        Collections.shuffle(this.deck);
+        shuffle();
     }
 
     private void fillDeck() {
