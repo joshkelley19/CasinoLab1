@@ -18,6 +18,7 @@ public class Agram {
     private int[] trick;
     List<String> ranks = Arrays.asList("THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN","ACE");
     private List<Player> players;
+    private Card lastPlayed;
 
 
     public int getWonTrick () {
@@ -44,6 +45,11 @@ public class Agram {
     public CardHandler getHand (int index) {
 
         return hands[index];
+    }
+
+    public Card getLastPlayed () {
+
+        return lastPlayed;
     }
 
 
@@ -141,16 +147,19 @@ public class Agram {
         if (playedSuit.equals("")) {
 
             playedSuit = suit;
+            lastPlayed = playerHand.get(cardIndex);
             playerHand.remove(cardIndex);
             return ranks.indexOf(card.getRank()) + 3;
 
         } else if (playedSuit.equals(suit)) {
 
+            lastPlayed = playerHand.get(cardIndex);
             playerHand.remove(cardIndex);
             return ranks.indexOf(card.getRank()) + 3;
 
         } else if (!canPlaySuit(hand)) {
 
+            lastPlayed = playerHand.get(cardIndex);
             playerHand.remove(cardIndex);
             return 0;
 

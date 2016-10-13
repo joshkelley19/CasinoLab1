@@ -133,7 +133,7 @@ public class Casino {
                 while(!(engine.playAgram(ui.getInt(), currentPlayer))) {
                     Display.print("You cannot play that card.");
                 }
-                Display.print("\n");
+                Display.print("Player " + (currentPlayer + 1) + " played " + engine.getAgramLastPlayed());
             }
             engine.finishAgramRound();
 

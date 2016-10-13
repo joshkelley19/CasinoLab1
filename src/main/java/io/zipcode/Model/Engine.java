@@ -68,4 +68,16 @@ public class Engine {
         return agram.getWonTrick();
     }
 
+    public String getAgramLastPlayed () {
+
+        StringBuilder result = new StringBuilder();
+        Card lastPlayed = agram.getLastPlayed();
+
+        result.append(lastPlayed.getRank());
+        result.append(" of ");
+        result.append(lastPlayed.getSuit());
+
+        return  result.toString();
+    }
+
 }
