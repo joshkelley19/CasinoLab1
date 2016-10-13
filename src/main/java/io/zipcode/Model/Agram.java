@@ -199,11 +199,12 @@ public class Agram {
 
     }
 
-    public String printHand (CardHandler hand) {
+    public String printHand (int index) {
 
         StringBuilder result = new StringBuilder();
+        List<Card> hand = hands[index].getHand();
 
-        for (Card card : hand.getHand()) {
+        for (Card card : hand) {
 
             result.append(card.getRank());
             result.append(" of ");
