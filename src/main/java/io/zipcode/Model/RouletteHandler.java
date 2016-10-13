@@ -16,6 +16,7 @@ public class RouletteHandler {
     private Player player;
     private BetType betType;
     private int payoff;
+    private int chosenNumber;
     // -------------------------------
 
     // Constructor ---------------------------
@@ -44,6 +45,10 @@ public class RouletteHandler {
         }
     }
 
+    public void setChosenNumber(int playerChoice) {
+        this.chosenNumber = playerChoice;
+    }
+
     public BetType getBetType() {
         return this.betType;
     }
@@ -54,5 +59,9 @@ public class RouletteHandler {
 
     public Player getPlayer() {
         return this.player;
+    }
+
+    public int getChosenNumber() {
+        return this.chosenNumber;
     }
 }

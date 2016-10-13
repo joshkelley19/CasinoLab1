@@ -9,8 +9,6 @@ public class Roulette {
     // Fields --------------------------------------
     private Map<Integer, String> wheel;
     private List<RouletteHandler> rouletteHandlers;
-    private List<Player> winners;
-    private boolean isRunning;
     private String color;
     private int number;
     // ---------------------------------------------
@@ -18,7 +16,6 @@ public class Roulette {
     // Constructor ---------------------------------
     public Roulette(List<Player> players) {
         this.wheel = new HashMap<Integer, String>();
-        this.winners = new ArrayList<Player>();
         this.fillWheel();
         this.rouletteHandlers = new ArrayList<RouletteHandler>();
         for(Player player : players) {
@@ -26,12 +23,6 @@ public class Roulette {
         }
     }
     // ---------------------------------------------
-
-    public void playRoulette() { // Core method to run the game
-        while(isRunning) {
-
-        }
-    }
 
     private void fillWheel() {
         wheel.put(1, "RED"); wheel.put(3, "RED"); wheel.put(5, "RED");
@@ -68,7 +59,47 @@ public class Roulette {
         return this.wheel;
     }
 
-    public void takeBets(RouletteHandler rh, int betAmount) {
-        rh.getPlayer().setBet(betAmount);
+    public boolean placeBet(int playerIndex, int betOption) {
+        this.rouletteHandlers.get(playerIndex).setBetTypeAndPayoff(betOption);
+        if(betOption==4) {
+            return false;
+        }
+        return true;
+    }
+
+    public void askforNumber(int playerIndex, int guess) {
+        this.rouletteHandlers.get(playerIndex).setChosenNumber(guess);
+    }
+
+    public int payoff() {
+        switch (this.rouletteHandlers.get(0).getBetType()) {
+            case ONE_TO_TWELVE:
+                if(this.number >= 1 || this.number <= 12) {
+                    return this.rouletteHandlers.get(0).getPlayer().getBet()*this.rouletteHandlers.get(0).getPayoff();
+                } else {
+                    return this.rouletteHandlers.get(0).getPlayer().getBet()*-1;
+                }
+            case THIRTEEN_TO_TWENTYFOUR:
+                if(this.number >= 13 || this.number <= 24) {
+                    return this.rouletteHandlers.get(0).getPlayer().getBet()*this.rouletteHandlers.get(0).getPayoff();
+                } else {
+                    return this.rouletteHandlers.get(0).getPlayer().getBet()*-1;
+                }
+            case TWENTYFIVE_THIRTYSIX:
+                if(this.number >= 25 || this.number <= 36) {
+                    return this.rouletteHandlers.get(0).getPlayer().getBet()*this.rouletteHandlers.get(0).getPayoff();
+                } else {
+                    return this.rouletteHandlers.get(0).getPlayer().getBet()*-1;
+                }
+            case ONE_NUMBER:
+                if(this.number==this.rouletteHandlers.get(0).getChosenNumber()) {
+                    return this.rouletteHandlers.get(0).getPlayer().getBet()*this.rouletteHandlers.get(0).getPayoff();
+                } else {
+                    return this.rouletteHandlers.get(0).getPlayer().getBet()*-1;
+                }
+            default:
+                System.out.println("Something broke");
+                return -99;
+        }
     }
 }

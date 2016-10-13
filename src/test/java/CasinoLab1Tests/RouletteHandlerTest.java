@@ -51,4 +51,5 @@ public class RouletteHandlerTest {
 
         Assert.assertEquals(expected, actual);
     }
+
 }
