@@ -10,6 +10,14 @@ public class Baccarat{
     ArrayList<Card> dealerHand= new ArrayList<>();
     boolean isRunning;
     Deck deck = new Deck();
+    int result;
+    int bet;
+    String bettedOn;
+
+    public Baccarat(int bet, String bettedOn){
+        this.bet=bet;
+        this.bettedOn = bettedOn;
+    }
 
     public int value(Card c){
         if(c.getRank() == "ACE" || c.getRank() == "JACK" || c.getRank() == "QUEEN" || c.getRank() == "KING" || c.getRank() == "TEN"){
@@ -113,14 +121,19 @@ public class Baccarat{
         }
     }
 
-    public void playersThirdCard(){
+    public boolean playersThirdCard(){
         if(CheckplayerSum()<6){
             if(CheckDealerSum() <8){
                 playerHand.add(deck.dealCard());
+            }else if(bettedOn.equals("bank")){
+                setResult(bet);
+                isRunning = false;
             }else{
-                gameOver();
+                setResult(-bet);
+                isRunning = false;
             }
         }
+        return isRunning;
     }
 
     public void DealersThirdCard(){
@@ -169,23 +182,30 @@ public class Baccarat{
 
     }
 
-    public void gameOver(){
-        isRunning = false;
-    }
+    public void getWinner(){
+        if(finalScoreDealer() > finalScoreDealer()){
+            if(bettedOn.equals("bank")){
+                setResult(bet);
+                isRunning = false;
+            }else{
+                setResult(-bet);
+                isRunning = false;
+            }
 
-    public void CheckWinner(){
-        if(finalScorePlayer() > finalScoreDealer()){
-            //player wins
-        }else if(finalScoreDealer()>finalScorePlayer()){
-            //bank wins
-        }else{
-            //noone wins
+        }else if(finalScorePlayer() > finalScoreDealer()){
+            if(bettedOn.equals("player")){
+                setResult(bet);
+                isRunning = false;
+            }else{
+                setResult(-bet);
+                isRunning = false;
+            }
         }
-
-        isRunning=false;
-
-
     }
+
+
+
+
 
     public ArrayList<Card> getPlayerHand() {
         return playerHand;
@@ -201,5 +221,13 @@ public class Baccarat{
 
     public void setDealerHand(ArrayList<Card> dealerHand) {
         this.dealerHand = dealerHand;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    private void setResult(int result) {
+        this.result = result;
     }
 }
