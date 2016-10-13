@@ -17,6 +17,11 @@ public class Blackjack {
     private List<Player> tied = new ArrayList<>();
     private List<Player> losers = new ArrayList<>();
 
+
+    public boolean getGameOver(){
+        return gameOver;
+    }
+
     public List<Player> getWinners(){
         return winners;
     }
@@ -143,7 +148,7 @@ public class Blackjack {
     }
 
     // ???
-    public void playBlackjack(){
+    /* public void playBlackjack(){
 
     }
 
@@ -159,5 +164,6 @@ public class Blackjack {
             System.out.println(x.get(i));
         }
     }
+    */
 
 }
