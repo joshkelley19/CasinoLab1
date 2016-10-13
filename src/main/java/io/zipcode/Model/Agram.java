@@ -103,11 +103,13 @@ public class Agram {
 
     public boolean canPlaySuit (CardHandler hand) {
 
+        List<Card> playerHand = hand.getHand();
+
         if (playedSuit.equals("")) {
             return true;
         }
 
-        for (Card card : hand.getHand()) {
+        for (Card card : playerHand) {
             if (card.getSuit().equals(playedSuit)) {
                 return true;
             }
@@ -119,23 +121,25 @@ public class Agram {
 
     public int getPlayedCard (CardHandler hand, int cardIndex) throws CannotPlayCardException {
 
+        List<Card> playerHand = hand.getHand();
+
         if (cardIndex > 6) {
 
             return playForNonHuman(hand);
         }
 
-        Card card = hand.getHand().get(cardIndex);
+        Card card = playerHand.get(cardIndex);
         String suit = card.getSuit();
 
         if (playedSuit.equals("")) {
 
             playedSuit = suit;
-            hand.getHand().remove(cardIndex);
+            playerHand.remove(cardIndex);
             return ranks.indexOf(card.getRank()) + 3;
 
         } else if (!canPlaySuit(hand)) {
 
-            hand.getHand().remove(cardIndex);
+            playerHand.remove(cardIndex);
             return 0;
 
         } else {
@@ -150,13 +154,14 @@ public class Agram {
         int index = 0;
         int lowest = 11;
         int cardVal;
+        List<Card> playerHand = hand.getHand();
 
         if (canPlaySuit(hand)) {
-            for (Card card : hand.getHand()) {
+            for (Card card : playerHand) {
                 cardVal = ranks.indexOf(card.getRank()) + 3;
                 if ((card.getSuit().equals(playedSuit) || playedSuit.equals("")) && cardVal < lowest) {
                     lowest = cardVal ;
-                    index = hand.getHand().indexOf(card);
+                    index = playerHand.indexOf(card);
                 }
             }
         } else {
@@ -164,9 +169,9 @@ public class Agram {
             lowest = 0;
         }
 
-        playedSuit = (playedSuit.equals("")) ? hand.getHand().get(index).getSuit(): playedSuit;
+        playedSuit = (playedSuit.equals("")) ? playerHand.get(index).getSuit(): playedSuit;
 
-        hand.getHand().remove(index);
+        playerHand.remove(index);
         return lowest;
     }
 
