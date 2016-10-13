@@ -38,9 +38,9 @@ public class AgramTest {
     @Test
     public void playedSuitTest () {
 
-        for(int i=0; i<suits.length; i++) {
-            for(int j=0; j<ranks.length; j++) {
-                deck.add(new Card(suits[i], ranks[j]));
+        for(int i=0; i<ranks.length; i++) {
+            for(int j=0; j<suits.length; j++) {
+                deck.add(new Card(suits[j], ranks[i]));
             }
         }
 
@@ -55,9 +55,9 @@ public class AgramTest {
     @Test
     public void trickTest () {
 
-        for(int i=0; i<suits.length; i++) {
-            for(int j=0; j<ranks.length; j++) {
-                deck.add(new Card(suits[i], ranks[j]));
+        for(int i=0; i<ranks.length; i++) {
+            for(int j=0; j<suits.length; j++) {
+                deck.add(new Card(suits[j], ranks[i]));
             }
         }
 
@@ -73,9 +73,9 @@ public class AgramTest {
     @Test
     public void playersTest () {
 
-        for(int i=0; i<suits.length; i++) {
-            for(int j=0; j<ranks.length; j++) {
-                deck.add(new Card(suits[i], ranks[j]));
+        for(int i=0; i<ranks.length; i++) {
+            for(int j=0; j<suits.length; j++) {
+                deck.add(new Card(suits[j], ranks[i]));
             }
         }
 
@@ -90,9 +90,9 @@ public class AgramTest {
     @Test
     public void canPlaySuitTest () {
 
-        for(int i=0; i<suits.length; i++) {
-            for(int j=0; j<ranks.length; j++) {
-                deck.add(new Card(suits[i], ranks[j]));
+        for(int i=0; i<ranks.length; i++) {
+            for(int j=0; j<suits.length; j++) {
+                deck.add(new Card(suits[j], ranks[i]));
             }
         }
 

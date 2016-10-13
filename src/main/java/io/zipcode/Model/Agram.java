@@ -11,7 +11,8 @@ public class Agram {
     private boolean isRunning = true;
     private int roundCount = 1;
     private int wonTrick;
-    private String playedSuit = "CLUBS";
+    private int playerCount;
+    private String playedSuit = "";
     private Deck deck = new Deck ();
     private CardHandler[] hands;
     private int[] trick;
@@ -48,39 +49,44 @@ public class Agram {
 
     public void playAgram(List<Player> players) {
 
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 13; j++) {
-//                hands[0].addCard(deck.dealCard());
-//            }
-//
-//        }
-//
-//        for (int i = 0; i < 6; i++) {
-//           passCards();
-//            playTrick();
-//            resolveTrick();
-//            resolveOrder();
-//
-//        }
-//
-//        for (int i = 0; i < 4; i ++) {
-//            calculatePoints();
-//        }
+        playerCount = players.size();
+        hands = new CardHandler[playerCount];
+        trick = new int[playerCount];
+        this.players = players;
+
+        for (int i = 0; i < playerCount; i++) {
+            hands[i] = new CardHandler(players.get(i));
+        }
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 6; j++) {
+                hands[i].addCard(deck.dealCard());
+            }
+
+        }
+
+        for (int i = 0; i < 6; i++) {
+            playTrick(hands);
+            resolveOrder();
+
+        }
+
 
     }
 
     public void playAgram(List<Player> players, List<Card> setDeck) {
 
         deck.deck = setDeck;
-        hands = new CardHandler[4];
-        trick = new int[4];
+        playerCount = players.size();
+        hands = new CardHandler[playerCount];
+        trick = new int[playerCount];
         this.players = players;
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < playerCount; i++) {
             hands[i] = new CardHandler(players.get(i));
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < playerCount; i++) {
             for (int j = 0; j < 6; j++) {
                 hands[i].addCard(deck.dealCard());
             }
@@ -95,8 +101,9 @@ public class Agram {
 
         int cardVal;
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < playerCount; i++) {
             cardVal = getPlayedCard(hands[i]);
+            System.out.println(cardVal);
             playCard(cardVal, i);
         }
 
@@ -110,6 +117,11 @@ public class Agram {
 
     public boolean canPlaySuit (CardHandler hand) {
 
+        if (playedSuit.equals("")) {
+            playedSuit = hand.getHand().get(0).getSuit();
+            return true;
+        }
+
         for (Card card : hand.getHand()) {
             if (card.getSuit().equals(playedSuit)) {
                 return true;
@@ -122,15 +134,20 @@ public class Agram {
 
     public int getPlayedCard (CardHandler hand) {
 
+        return playForNonHuman(hand);
+    }
+
+    private int playForNonHuman (CardHandler hand) {
+
         int index = 0;
         int lowest = 11;
         int cardVal;
 
         if (canPlaySuit(hand)) {
             for (Card card : hand.getHand()) {
-                cardVal = ranks.indexOf(card.getRank());
+                cardVal = ranks.indexOf(card.getRank()) + 3;
                 if (card.getSuit().equals(playedSuit) && cardVal < lowest) {
-                    lowest = cardVal;
+                    lowest = cardVal ;
                     index = hand.getHand().indexOf(card);
                 }
             }
@@ -141,7 +158,6 @@ public class Agram {
 
         hand.getHand().remove(index);
         return lowest;
-
     }
 
     private void resolveOrder () {
