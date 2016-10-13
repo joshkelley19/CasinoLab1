@@ -76,7 +76,7 @@ public class Agram {
 
     public void playAgram(List<Player> players, List<Card> setDeck) {
 
-        deck.deck = setDeck;
+        deck.setDeck(setDeck);
         playerCount = players.size();
         hands = new CardHandler[playerCount];
         trick = new int[playerCount];

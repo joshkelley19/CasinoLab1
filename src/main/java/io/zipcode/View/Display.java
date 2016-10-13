@@ -28,7 +28,7 @@ public class Display {
     }
 
   public static void requestGame() {
-    System.out.println("What Table would you like to join?\nSlots\nBlackjack");
+    System.out.println("What would you like to do?\nSlots\nBlackjack\nRoulette\nAgram\nGo Fish\nRussian Roulette\nBaccarat\nWar\n\nQuit");
   }
 
   public static void requestBet(){
@@ -48,8 +48,34 @@ public class Display {
     System.out.println("Your bet is inadequate");
   }
 
+
   public static void printAgram (String message) {
       System.out.println(message);
   }
 
+
+  public static void rouletteWelcome() {
+    System.out.println("Welcome to Roulette!");
+  }
+
+  public static void rouletteAskBetType() {
+    System.out.println("Please choose a type of bet:");
+    System.out.println("[1] One - Twelve");
+    System.out.println("[2] Thirteen - Twenty-four");
+    System.out.println("[3] Twenty-five - Thirty-six");
+    System.out.println("[4] One Number");
+  }
+
+  public static void rouletteAskForNumber() {
+    System.out.print("Please enter a number: ");
+  }
+
+  public static void roulettePrintWheel(String color, int number) {
+    System.out.println("Wheel value:");
+    System.out.println("Color: " + color + ", Number: " + number);
+  }
+  // ------------------------------------------
+  public static void playAgain(){
+    System.out.print("Would you like to play again? Yes or No: ");
+  }
 }
