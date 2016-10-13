@@ -16,14 +16,14 @@ public class AgramTest {
     Player[] playArr = {new Player("John", 100), new Player("Jack", 100), new Player("Jen", 100), new Player("Jez", 100)};
     String[] ranks = {"THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN","ACE"};
     String [] suits = {"HEARTS", "SPADES", "DIAMONDS", "CLUBS"};
-    List<Card> deck;
+    List<Card> deck = new ArrayList<Card>();
 
     @Test
     public void wonTrickTest () {
 
-        for(int i=0; i<suits.length; i++) {
-            for(int j=0; j<ranks.length; j++) {
-                deck.add(new Card(suits[i], ranks[j]));
+        for(int i=0; i<ranks.length; i++) {
+            for(int j=0; j<suits.length; j++) {
+                deck.add(new Card(suits[j], ranks[i]));
             }
         }
 

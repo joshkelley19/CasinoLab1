@@ -15,6 +15,7 @@ public class Agram {
     private Deck deck = new Deck ();
     private CardHandler[] hands;
     private int[] trick;
+    List<String> ranks = Arrays.asList("THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN","ACE");
     private List<Player> players;
 
 
@@ -70,56 +71,78 @@ public class Agram {
 
     public void playAgram(List<Player> players, List<Card> setDeck) {
 
-//        deck.deck = setDeck;
+        deck.deck = setDeck;
+        hands = new CardHandler[4];
+        trick = new int[4];
+        this.players = players;
 
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 6; j++) {
-//                hands[0].addCard(deck.dealCard());
-//            }
-//
-//        }
+        for (int i = 0; i < 4; i++) {
+            hands[i] = new CardHandler(players.get(i));
+        }
 
-//            playTrick();
-//            resolveOrder();
-//
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 6; j++) {
+                hands[i].addCard(deck.dealCard());
+            }
 
+        }
+            playTrick(hands);
+            resolveOrder();
     }
 
 
     public void playTrick (CardHandler[] hands) {
 
-//        Card card;
+        int cardVal;
 
-//        for (int i = 0; i < 4; i++) {
-//            card = getPlayedCard(hand[i]);
-//            playCard(card, i);
-//        }
+        for (int i = 0; i < 4; i++) {
+            cardVal = getPlayedCard(hands[i]);
+            playCard(cardVal, i);
+        }
 
     }
 
-    private void playCard (Card card, int index) {
+    private void playCard (int cardVal, int index) {
 
-//            trick[index] = card;
+            trick[index] = cardVal;
 
     }
 
     public boolean canPlaySuit (CardHandler hand) {
 
+        for (Card card : hand.getHand()) {
+            if (card.getSuit().equals(playedSuit)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
 
-    public Card getPlayedCard (CardHandler hand) {
+    public int getPlayedCard (CardHandler hand) {
 
-//        if (canPlaySuit(hand)) {
-//            play first card that matches suit
-//        } else {
-//            play first card
-//        }
+        int index = 0;
+        int lowest = 11;
+        int cardVal;
 
-        return null;
+        if (canPlaySuit(hand)) {
+            for (Card card : hand.getHand()) {
+                cardVal = ranks.indexOf(card.getRank());
+                if (card.getSuit().equals(playedSuit) && cardVal < lowest) {
+                    lowest = cardVal;
+                    index = hand.getHand().indexOf(card);
+                }
+            }
+        } else {
+            index = 0;
+            lowest = 0;
+        }
+
+        hand.getHand().remove(index);
+        return lowest;
+
     }
-
 
     private void resolveOrder () {
 
