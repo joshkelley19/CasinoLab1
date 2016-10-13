@@ -75,6 +75,7 @@ public class Agram {
         hands = new CardHandler[playerCount];
         trick = new int[playerCount];
         this.players = players;
+        roundCount = 1;
 
         for (int i = 0; i < playerCount; i++) {
             hands[i] = new CardHandler(players.get(i));
@@ -170,8 +171,7 @@ public class Agram {
     }
 
 
-
-    public void resolveOrder () {
+    public void resolveRound () {
 
         int highest = 0;
         int i = 0;
@@ -184,6 +184,10 @@ public class Agram {
             }
             i++;
         }
+    }
+
+
+    public void prepNextRound () {
 
         playedSuit = "";
         roundCount++;

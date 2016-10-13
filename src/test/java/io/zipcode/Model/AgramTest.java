@@ -1,5 +1,6 @@
 package io.zipcode.Model;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -18,8 +19,8 @@ public class AgramTest {
     String [] suits = {"HEARTS", "SPADES", "DIAMONDS", "CLUBS"};
     List<Card> deck = new ArrayList<Card>();
 
-    @Test
-    public void wonTrickTest () {
+    @Before
+    public void initilize () {
 
         for(int i=0; i<ranks.length; i++) {
             for(int j=0; j<suits.length; j++) {
@@ -37,7 +38,11 @@ public class AgramTest {
             }
         }
 
-        game.resolveOrder();
+        game.resolveRound();
+    }
+
+    @Test
+    public void wonTrickTest () {
 
         assertEquals("Player 4 should have won the trick", 3, game.getWonTrick());
 
@@ -47,24 +52,6 @@ public class AgramTest {
     @Test
     public void playedSuitTest () {
 
-        for(int i=0; i<ranks.length; i++) {
-            for(int j=0; j<suits.length; j++) {
-                deck.add(new Card(suits[j], ranks[i]));
-            }
-        }
-
-        players = Arrays.asList(playArr);
-        game.playAgram(players, deck);
-        for (int i = 0; i < 4; i++) {
-            try {
-                game.playTrick(i, 7);
-            } catch (CannotPlayCardException e) {
-                System.out.println("Error");
-            }
-        }
-
-        //game.resolveOrder();
-
         assertEquals("The played suit should be hearts", "HEARTS", game.getPlayedSuit());
 
     }
@@ -72,25 +59,6 @@ public class AgramTest {
 
     @Test
     public void trickTest () {
-
-        for(int i=0; i<ranks.length; i++) {
-            for(int j=0; j<suits.length; j++) {
-                deck.add(new Card(suits[j], ranks[i]));
-            }
-        }
-
-        players = Arrays.asList(playArr);
-        game.playAgram(players, deck);
-        for (int i = 0; i < 4; i++) {
-            try {
-                game.playTrick(i, 7);
-            } catch (CannotPlayCardException e) {
-                System.out.println("Error");
-            }
-        }
-
-        game.resolveOrder();
-
 
         int[] expected = {3, 5, 6, 8};
 
@@ -101,50 +69,12 @@ public class AgramTest {
     @Test
     public void playersTest () {
 
-        for(int i=0; i<ranks.length; i++) {
-            for(int j=0; j<suits.length; j++) {
-                deck.add(new Card(suits[j], ranks[i]));
-            }
-        }
-
-        players = Arrays.asList(playArr);
-        game.playAgram(players, deck);
-        for (int i = 0; i < 4; i++) {
-            try {
-                game.playTrick(i, 7);
-            } catch (CannotPlayCardException e) {
-                System.out.println("Error");
-            }
-        }
-
-        game.resolveOrder();
-
-
         assertEquals("The list of players should match up︎", players, game.getPlayers());
 
     }
 
     @Test
     public void canPlaySuitTest () {
-
-        for(int i=0; i<ranks.length; i++) {
-            for(int j=0; j<suits.length; j++) {
-                deck.add(new Card(suits[j], ranks[i]));
-            }
-        }
-
-        players = Arrays.asList(playArr);
-        game.playAgram(players, deck);
-        for (int i = 0; i < 4; i++) {
-            try {
-                game.playTrick(i, 7);
-            } catch (CannotPlayCardException e) {
-                System.out.println("Error");
-            }
-        }
-
-        game.resolveOrder();
-
 
         assertTrue("The hand should be able to play the correct suit︎", game.canPlaySuit(game.getHand(0)));
 
