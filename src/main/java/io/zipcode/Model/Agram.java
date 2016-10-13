@@ -11,11 +11,14 @@ public class Agram {
     private boolean isRunning = true;
     private int roundCount = 1;
     private int wonTrick;
-    private String playedSuit = "CLUBS";
-    private Deck deck = new Deck ();
+    private int playerCount;
+    private String playedSuit = "";
+    private Deck deck = new AgramDeck ();
     private CardHandler[] hands;
     private int[] trick;
+    List<String> ranks = Arrays.asList("THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN","ACE");
     private List<Player> players;
+    private Card lastPlayed;
 
 
     public int getWonTrick () {
@@ -44,84 +47,209 @@ public class Agram {
         return hands[index];
     }
 
+    public Card getLastPlayed () {
+
+        return lastPlayed;
+    }
+
 
     public void playAgram(List<Player> players) {
 
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 13; j++) {
-//                hands[0].addCard(deck.dealCard());
-//            }
-//
-//        }
-//
-//        for (int i = 0; i < 6; i++) {
-//           passCards();
-//            playTrick();
-//            resolveTrick();
-//            resolveOrder();
-//
-//        }
-//
-//        for (int i = 0; i < 4; i ++) {
-//            calculatePoints();
-//        }
+        playerCount = players.size();
+        hands = new CardHandler[playerCount];
+        trick = new int[playerCount];
+        this.players = players;
+
+        for (int i = 0; i < playerCount; i++) {
+            hands[i] = new CardHandler(players.get(i));
+        }
+
+        for (int i = 0; i < playerCount; i++) {
+            for (int j = 0; j < 6; j++) {
+
+                hands[i].addCard(deck.dealCard());
+            }
+
+        }
 
     }
 
     public void playAgram(List<Player> players, List<Card> setDeck) {
 
-//        deck.deck = setDeck;
+        deck.deck = setDeck;
+        playerCount = players.size();
+        hands = new CardHandler[playerCount];
+        trick = new int[playerCount];
+        this.players = players;
+        roundCount = 1;
 
-//        for (int i = 0; i < 4; i++) {
-//            for (int j = 0; j < 6; j++) {
-//                hands[0].addCard(deck.dealCard());
-//            }
-//
-//        }
+        for (int i = 0; i < playerCount; i++) {
+            hands[i] = new CardHandler(players.get(i));
+        }
 
-//            playTrick();
-//            resolveOrder();
-//
+        for (int i = 0; i < playerCount; i++) {
+            for (int j = 0; j < 6; j++) {
+                hands[i].addCard(deck.dealCard());
+            }
 
-    }
-
-
-    public void playTrick (CardHandler[] hands) {
-
-//        Card card;
-
-//        for (int i = 0; i < 4; i++) {
-//            card = getPlayedCard(hand[i]);
-//            playCard(card, i);
-//        }
+        }
 
     }
 
-    private void playCard (Card card, int index) {
 
-//            trick[index] = card;
+    public void playTrick (int playerNum, int cardIndex) throws CannotPlayCardException {
+
+        int cardVal;
+
+        cardVal = getPlayedCard(hands[playerNum], cardIndex);
+        trick[playerNum] = cardVal;
 
     }
+
 
     public boolean canPlaySuit (CardHandler hand) {
+
+        List<Card> playerHand = hand.getHand();
+
+        if (playedSuit.equals("")) {
+            return true;
+        }
+
+        for (Card card : playerHand) {
+            if (card.getSuit().equals(playedSuit)) {
+                return true;
+            }
+        }
 
         return false;
     }
 
 
-    public Card getPlayedCard (CardHandler hand) {
+    public int getPlayedCard (CardHandler hand, int cardIndex) throws CannotPlayCardException {
 
-//        if (canPlaySuit(hand)) {
-//            play first card that matches suit
-//        } else {
-//            play first card
-//        }
+        List<Card> playerHand = hand.getHand();
 
-        return null;
+        if (cardIndex > 6) {
+
+            return playForNonHuman(hand);
+        }
+
+        Card card;
+
+        try {
+            card = playerHand.get(cardIndex);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CannotPlayCardException("You cannot play this card.");
+        }
+
+        String suit = card.getSuit();
+
+        if (playedSuit.equals("")) {
+
+            playedSuit = suit;
+            lastPlayed = playerHand.get(cardIndex);
+            playerHand.remove(cardIndex);
+            return ranks.indexOf(card.getRank()) + 3;
+
+        } else if (playedSuit.equals(suit)) {
+
+            lastPlayed = playerHand.get(cardIndex);
+            playerHand.remove(cardIndex);
+            return ranks.indexOf(card.getRank()) + 3;
+
+        } else if (!canPlaySuit(hand)) {
+
+            lastPlayed = playerHand.get(cardIndex);
+            playerHand.remove(cardIndex);
+            return 0;
+
+        } else {
+            throw new CannotPlayCardException("You cannot play this card.");
+        }
+
+
+    }
+
+    private int playForNonHuman (CardHandler hand) {
+
+        int index = 0;
+        int lowest = 11;
+        int cardVal;
+        List<Card> playerHand = hand.getHand();
+
+        if (canPlaySuit(hand)) {
+            for (Card card : playerHand) {
+                cardVal = ranks.indexOf(card.getRank()) + 3;
+                if ((card.getSuit().equals(playedSuit) || playedSuit.equals("")) && cardVal < lowest) {
+                    lowest = cardVal ;
+                    index = playerHand.indexOf(card);
+                }
+            }
+        } else {
+            index = 0;
+            lowest = 0;
+        }
+
+        playedSuit = (playedSuit.equals("")) ? playerHand.get(index).getSuit(): playedSuit;
+
+        playerHand.remove(index);
+        return lowest;
     }
 
 
-    private void resolveOrder () {
+    public void resolveRound () {
+
+        int highest = 0;
+        int i = 0;
+
+        for (int cardVal : trick) {
+
+            if (cardVal > highest) {
+                highest = cardVal;
+                wonTrick = i;
+            }
+            i++;
+        }
+    }
+
+
+    public void prepNextRound () {
+
+        playedSuit = "";
+        roundCount++;
+
+    }
+
+    public String printHand (int index) {
+
+        StringBuilder result = new StringBuilder();
+        List<Card> hand = hands[index].getHand();
+
+        for (Card card : hand) {
+
+            result.append(card.getRank());
+            result.append(" of ");
+            result.append(card.getSuit());
+            result.append(", ");
+        }
+
+        result.delete(result.length() - 2, result.length());
+
+        return result.toString();
+    }
+
+    public int payout (Player player) {
+
+        int bet = player.getBet();
+        int balance = player.getBalance();
+
+        if (players.indexOf(player) == wonTrick) {
+            player.setBalance(balance + bet);
+            return bet;
+        } else {
+            player.setBalance(balance - bet);
+            return -bet;
+        }
 
     }
 
