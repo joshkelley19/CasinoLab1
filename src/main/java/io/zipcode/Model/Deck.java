@@ -17,7 +17,7 @@ public class Deck {
         Collections.shuffle(this.deck);
     }
 
-    public void fillDeck() {
+    private void fillDeck() {
         for(int i=0; i<suits.length; i++) {
             for(int j=0; j<ranks.length; j++) {
                 deck.add(new Card(suits[i], ranks[j]));

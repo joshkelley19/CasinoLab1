@@ -165,7 +165,7 @@ public class Agram {
         }
 
         playedSuit = (playedSuit.equals("")) ? hand.getHand().get(index).getSuit(): playedSuit;
-
+        
         hand.getHand().remove(index);
         return lowest;
     }
@@ -192,6 +192,23 @@ public class Agram {
         playedSuit = "";
         roundCount++;
 
+    }
+
+    public String printHand (CardHandler hand) {
+
+        StringBuilder result = new StringBuilder();
+
+        for (Card card : hand.getHand()) {
+
+            result.append(card.getRank());
+            result.append(" of ");
+            result.append(card.getSuit());
+            result.append(", ");
+        }
+
+        result.delete(result.length() - 2, result.length());
+
+        return result.toString();
     }
 
 }

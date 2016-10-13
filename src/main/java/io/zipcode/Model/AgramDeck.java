@@ -17,12 +17,12 @@ public class AgramDeck extends Deck {
             if (card.getSuit().equals("SPADES") && card.getRank().equals("ACE")) {
                 removeCard = card;
                 break;
+
             }
         }
         deck.remove(removeCard);
     }
 
-    @Override
     public void fillDeck() {
         for(String suit: suits) {
             for(String rank: ranks) {
