@@ -2,6 +2,9 @@ package io.zipcode.View;
 
 import io.zipcode.Model.Engine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by joshuakelley on 10/11/16.
  */
@@ -102,14 +105,27 @@ public class Casino {
 //        }while (engine.gameRunning);
 //    }
 //
-//    public void playAgram(){
-//        int bet;
-//        Display.agramWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.result(engine.playAgram(bet));
-//        }while (engine.gameRunning);
-//    }
+    public void playAgram(){
+        List<Integer> bets = new ArrayList<Integer>();
+        int length = engine.players.size();
+        //Display.agramWelcome();
+
+        engine.initializeAgram();
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < length; j++) {
+                engine.getAgramHand(j);
+                engine.playAgram(ui.getInt(), j);
+            }
+            engine.finishAgramRound();
+
+        }
+
+        for (int winnings : bets) {
+            Display.result(winnings);
+        }
+
+    }
 //
 //    public void playGoFish(){
 //        int bet;
@@ -138,10 +154,10 @@ public class Casino {
 //        }while (engine.gameRunning);
 //    }
 //
-//    public int requestBet(){
-//        Display.requestBet();
-//        return ui.getInt();
-//    }
+    public int requestBet(){
+        Display.requestBet();
+        return ui.getInt();
+    }
 
 //    public static void main(String[] args) {
 //        Casino casino = new Casino();

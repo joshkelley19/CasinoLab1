@@ -143,7 +143,7 @@ public class Agram {
             return 0;
 
         } else {
-            throw new CannotPlayCardException();
+            throw new CannotPlayCardException("You cannot play this card.");
         }
 
 
@@ -217,17 +217,17 @@ public class Agram {
         return result.toString();
     }
 
-    public boolean payout (Player player) {
+    public int payout (Player player) {
 
         int bet = player.getBet();
         int balance = player.getBalance();
 
         if (players.indexOf(player) == wonTrick) {
             player.setBalance(balance + bet);
-            return true;
+            return bet;
         } else {
             player.setBalance(balance - bet);
-            return false;
+            return -bet;
         }
 
     }

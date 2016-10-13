@@ -40,4 +40,5 @@ public class Display {
   public static void weakBet() {
     System.out.println("Your bet is inadequate");
   }
+
 }
