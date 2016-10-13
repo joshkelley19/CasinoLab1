@@ -32,4 +32,8 @@ public class Deck {
     public Card dealCard() {
         return this.deck.remove(0);
     }
+
+    public List<Card> getDeck(){
+        return deck;
+    }
 }
