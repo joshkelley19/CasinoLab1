@@ -85,7 +85,7 @@ public class Casino {
                 startingPlayer = engine.getAgramStartingPlayer();
                 currentPlayer = (startingPlayer + j) % length;
                 Display.printAgram("Player " + (currentPlayer + 1) + " select a card by number.");
-                Display.printAgram(engine.getAgramHand(j));
+                Display.printAgram(engine.getAgramHand(currentPlayer));
                 while(!(engine.playAgram(ui.getInt(), currentPlayer))) {
                     Display.printAgram("You cannot play that card.");
                 }
