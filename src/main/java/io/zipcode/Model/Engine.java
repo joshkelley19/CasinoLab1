@@ -24,6 +24,8 @@ public class Engine {
 
     public int playRoulette(int bet, int betType, int numberGuess) {
         roulette = new Roulette(players);
+
+        roulette.getRouletteHandler(0).getPlayer().setBet(placeBet(bet));
         roulette.placeBetType(0, betType);
         roulette.askforNumber(0, numberGuess);
         roulette.spinWheel();
