@@ -57,54 +57,7 @@ public class Casino {
 //        }
 //    }
 //
-//    private void playRoulette() {
-//        int bet;
-//        int betType;
-//        int numberGuess = 1;
-//        String response;
-//        Display.welcomeToRoulette();
-//        do{
-//
-//            Display.betType();
-//            betType=ui.getString();
-//            bet=requestBet();
-//            if(betType==4){
-//                numberGuess=ui.getInt();
-//            }
-//            Display.result(engine.playRoulette(bet,betType,numberGuess));
-//            Display.playAgain();
-//            response = ui.getString();
-//        }while (response.toUpperCase()=="YES");
-//    }
-//
-//    public void playSlots(){
-//        int bet;
-//        Display.slotsWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.result(engine.playSlots(bet));
-//        }while (engine.isRunning());
-//    }
-//
-//    public void playBaccarat(){
-//        int bet;
-//        Display.baccaratWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.Baccarat();
-//            Display.result(engine.playBaccarat(bet));
-//        }while (engine.gameRunning);
-//    }
-//
-//    public void playBlackjack(){
-//        int bet;
-//        Display.blackjackWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.result(engine.playBlackjack(bet));
-//        }while (engine.gameRunning);
-//    }
-//
+
     public void playAgram(){
 
         engine.createPlayer("John", 100);
@@ -116,7 +69,7 @@ public class Casino {
         int length = engine.players.size();
         int startingPlayer;
         int currentPlayer;
-        //Display.agramWelcome();
+        Display.agramWelcome();
 
         for (int i = 0; i < length; i++) {
             bets.add(requestBet());
@@ -127,16 +80,16 @@ public class Casino {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < length; j++) {
                 if (j > 0 ) {
-                    Display.print("The current suit is " + engine.getAgramPlayedSuit());
+                    Display.printAgram("The current suit is " + engine.getAgramPlayedSuit());
                 }
                 startingPlayer = engine.getAgramStartingPlayer();
                 currentPlayer = (startingPlayer + j) % length;
-                Display.print("Player " + (currentPlayer + 1) + " select a card by number.");
-                Display.print(engine.getAgramHand(j));
+                Display.printAgram("Player " + (currentPlayer + 1) + " select a card by number.");
+                Display.printAgram(engine.getAgramHand(j));
                 while(!(engine.playAgram(ui.getInt(), currentPlayer))) {
-                    Display.print("You cannot play that card.");
+                    Display.printAgram("You cannot play that card.");
                 }
-                Display.print("Player " + (currentPlayer + 1) + " played " + engine.getAgramLastPlayed());
+                Display.printAgram("Player " + (currentPlayer + 1) + " played " + engine.getAgramLastPlayed());
             }
             engine.finishAgramRound();
 
@@ -149,43 +102,10 @@ public class Casino {
         }
 
     }
-//
-//    public void playGoFish(){
-//        int bet;
-//        Display.goFishWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.result(engine.playGoFish(bet));
-//        }while (engine.gameRunning);
-//    }
-//
-//    public void playRussianRoulette(){
-//        int bet;
-//        Display.russianRouletteWelcome();
-//        do{
-//            Display.pressEnter();
-//            Display.result(engine.playRussianRoulette());
-//        }while (engine.gameRunning);
-//    }
-//
-//    public void playWar(){
-//        int bet;
-//        Display.warWelcome();
-//        do{
-//            bet = requestBet();
-//            Display.result(engine.playWar(bet));
-//        }while (engine.gameRunning);
-//    }
-//
+
     public int requestBet(){
         Display.requestBet();
         return ui.getInt();
     }
 
-//    public static void main(String[] args) {
-//        Casino casino = new Casino();
-//
-//        casino.startGame();
-//        casino.enterCasino();
-//    }
 }
