@@ -15,4 +15,6 @@ public class UserInput {
     protected int getInt(){
       return scanner.nextInt();
     }
+
+    protected String pressEnter(){return scanner.nextLine();}
 }

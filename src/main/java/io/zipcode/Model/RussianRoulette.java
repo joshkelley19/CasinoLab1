@@ -1,5 +1,8 @@
 package io.zipcode.Model;
 
+import io.zipcode.View.Display;
+import io.zipcode.View.UserInput;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -10,28 +13,7 @@ import java.util.Scanner;
  */
 public class RussianRoulette
 {
-
-    public void playRR(List<Player> players)
-    {
-        fillRoster(players);
-        Scanner input = new Scanner(System.in);
-        Boolean keepGoing = true;
-        int counter = 0;
-        int bullet = loadGun();
-        while (keepGoing == true)
-        {
-            System.out.println("");
-            System.out.println(players.get(counter).getName() + "'s turn.");
-            System.out.println("Press enter to pull the trigger.");
-            String trigger = input.nextLine();
-            keepGoing = pullTrigger(counter, bullet);
-            counter++;
-        }
-        int losersAnte = losersBet(players, bullet);
-        removePlayer(players, bullet);
-        payOut(players, losersAnte);
-        emptyRoster(players);
-    }
+    Display display = new Display();
 
     public int loadGun()
     {
@@ -45,11 +27,13 @@ public class RussianRoulette
         if (counter == bullet)
         {
             //System.out.println("-Bang!-");
+            display.bang();
             return false;
         }
         else
         {
             //System.out.println("-click-");
+            display.click();
             return true;
         }
     }
@@ -92,6 +76,13 @@ public class RussianRoulette
                 iter.remove();
             }
         }
+    }
+    public void RussianRoulettePayOut(List<Player> players, int bullet)
+    {
+        int losersAnte = losersBet(players, bullet);
+        removePlayer(players, bullet);
+        payOut(players, losersAnte);
+        emptyRoster(players);
     }
 
 }

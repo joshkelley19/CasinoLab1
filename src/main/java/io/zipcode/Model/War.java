@@ -1,35 +1,56 @@
 package io.zipcode.Model;
 
+import io.zipcode.View.Display;
+
+import java.util.List;
+
 /**
  * Created by zacharywasserman on 10/12/16.
  */
 public class War
 {
-    public void playWar()
-    {
-        Deck deck = new Deck();
-        Card playersDraw = deck.dealCard();
-        Card dealersDraw = deck.dealCard();
+    Deck deck = new Deck();
+    Display display = new Display();
 
-    }
-    public Player getWinner(Card playersCard, Card dealersCard)
+    public String getWinner(Card playersCard, Card dealersCard)
     {
         if(cardValue(playersCard) > cardValue(dealersCard))
         {
-            return 
+            display.youWin();
+            return "player";
         }
         if(cardValue(playersCard) == cardValue(dealersCard))
         {
-
+            display.tie();
+            dealCards();
+            return null;
         }
         else
         {
-
+            display.youLose();
+            return "dealer";
         }
     }
 
+    public void dealCards()
+    {
+        Card playersDraw = deck.dealCard();
+        Card dealersDraw = deck.dealCard();
+        getWinner(playersDraw, dealersDraw);
+    }
 
-
+    public void warPayOut(List<Player> players, String winner)
+    {
+        for (Player player: players) {
+            if (winner.equals("player")) {
+                player.setBalance(player.getBet());
+            }
+            else
+            {
+                player.setBalance(-player.getBet());
+            }
+        }
+    }
 
     public int cardValue(Card card)
     {
@@ -89,6 +110,5 @@ public class War
             return 0;
         }
     }
-
 
 }
