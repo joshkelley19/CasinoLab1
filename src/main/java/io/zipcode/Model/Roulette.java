@@ -15,17 +15,17 @@ public class Roulette {
     private int number;
     // ---------------------------------------------
 
-    // Constructor ----------------------------------
+    // Constructor ---------------------------------
     public Roulette(List<Player> players) {
         this.wheel = new HashMap<Integer, String>();
         this.winners = new ArrayList<Player>();
         this.fillWheel();
         this.rouletteHandlers = new ArrayList<RouletteHandler>();
         for(Player player : players) {
-            rouletteHandlers.add(new RouletteHandler());
+            rouletteHandlers.add(new RouletteHandler(player));
         }
     }
-    // ----------------------------------------------
+    // ---------------------------------------------
 
     public void playRoulette() { // Core method to run the game
         while(isRunning) {
@@ -68,7 +68,7 @@ public class Roulette {
         return this.wheel;
     }
 
-    public void takeBets() {
-
+    public void takeBets(RouletteHandler rh, int betAmount) {
+        rh.getPlayer().setBet(betAmount);
     }
 }
