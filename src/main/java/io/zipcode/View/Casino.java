@@ -10,7 +10,7 @@ public class Casino {
 
     Engine engine = new Engine();
     UserInput ui = new UserInput();
-//
+
     public void startGame(){
         Display.whatsYourName();
         String name = ui.getString();
@@ -33,7 +33,8 @@ public class Casino {
         //regex
         try{
             switch (game.toUpperCase()){
-//                case "SLOTS": playSlots();break;
+
+                case "SLOTS": playSlots();break;
 //                case "BLACKJACK": playBlackjack();break;
                 case "ROULETTE": playRoulette();break;
 //                case "AGRAM": playAgram();break;
@@ -47,13 +48,8 @@ public class Casino {
             }
         }catch (InvalidBetException e){
             Display.weakBet();
-        //}catch (ZeroBalanceException z){
-
-        //}catch (GameSizeException g){
-
-        }finally {
-            return true;
         }
+        return true;
     }
 
     private void playRoulette() {
@@ -62,22 +58,40 @@ public class Casino {
         int numberGuess = 1;
         String response;
         Display.rouletteWelcome();
-        do{
+        do {
             Display.rouletteAskBetType();
-            betType=ui.getInt();
-            bet=requestBet();
-            if(betType==4){
-                numberGuess=ui.getInt();
+            betType = ui.getInt();
+            bet = requestBet();
+            if (betType == 4) {
+                numberGuess = ui.getInt();
             }
-            Display.result(engine.playRoulette(bet,betType,numberGuess));
-            //Display.playAgain();
+            Display.result(engine.playRoulette(bet, betType, numberGuess));
+            Display.playAgain();
             response = ui.getString();
-        }while (response.toUpperCase()=="YES");
+        } while (response.toUpperCase().equals("YES"));
+    }
+
+    public void playSlots(){
+        int bet;
+        String response;
+        Display.slotsWelcome();
+        do{
+            bet = requestBet();
+            Display.result(engine.playSlots(bet));
+            Display.playAgain();
+            response = ui.getString();
+        }while (response.toUpperCase().equals("YES"));
     }
 
     public int requestBet(){
         Display.requestBet();
         return ui.getInt();
     }
-    
+
+    public static void main(String[] args) {
+        Casino casino = new Casino();
+        casino.startGame();
+        casino.enterCasino();
+    }
+
 }

@@ -81,7 +81,7 @@ public class Roulette {
     public int payoff() {
         switch (this.rouletteHandlers.get(0).getBetType()) {
             case ONE_TO_TWELVE:
-                if(this.number >= 1 || this.number <= 12) {
+                if(this.number >= 1 && this.number <= 12) {
                     Player player = this.rouletteHandlers.get(0).getPlayer();
                     player.setBalance(player.getBalance()+(player.getBet()*this.rouletteHandlers.get(0).getPayoff()));
                     return this.rouletteHandlers.get(0).getPlayer().getBet()*this.rouletteHandlers.get(0).getPayoff();
@@ -91,7 +91,7 @@ public class Roulette {
                     return this.rouletteHandlers.get(0).getPlayer().getBet()*-1;
                 }
             case THIRTEEN_TO_TWENTYFOUR:
-                if(this.number >= 13 || this.number <= 24) {
+                if(this.number >= 13 && this.number <= 24) {
                     Player player = this.rouletteHandlers.get(0).getPlayer();
                     player.setBalance(player.getBalance()+(player.getBet()*this.rouletteHandlers.get(0).getPayoff()));
                     return this.rouletteHandlers.get(0).getPlayer().getBet()*this.rouletteHandlers.get(0).getPayoff();
@@ -101,7 +101,7 @@ public class Roulette {
                     return this.rouletteHandlers.get(0).getPlayer().getBet()*-1;
                 }
             case TWENTYFIVE_THIRTYSIX:
-                if(this.number >= 25 || this.number <= 36) {
+                if(this.number >= 25 && this.number <= 36) {
                     Player player = this.rouletteHandlers.get(0).getPlayer();
                     player.setBalance(player.getBalance()+(player.getBet()*this.rouletteHandlers.get(0).getPayoff()));
                     return this.rouletteHandlers.get(0).getPlayer().getBet()*this.rouletteHandlers.get(0).getPayoff();
