@@ -14,28 +14,39 @@ import java.util.Scanner;
 public class RussianRoulette
 {
     Display display = new Display();
-
-    public int loadGun()
+    int counter = 0;
+    int bullet= 0;
+    public void loadGun()
     {
         Random rand = new Random();
-        int bullet = rand.nextInt(6);
-        return bullet;
+        bullet = rand.nextInt(6);
+        //return bullet;
     }
 
     public boolean pullTrigger(int counter, int bullet)
     {
         if (counter == bullet)
         {
-            //System.out.println("-Bang!-");
             display.bang();
             return false;
         }
         else
         {
-            //System.out.println("-click-");
             display.click();
+            this.counter++;
             return true;
         }
+    }
+    public int getBullet()
+    {
+        return bullet;
+    }
+    public void plusCounter(){
+        counter++;
+    }
+    public int getCounter()
+    {
+        return counter;
     }
 
     public void removePlayer(List<Player> players, int loser)
@@ -76,8 +87,9 @@ public class RussianRoulette
                 iter.remove();
             }
         }
+        counter = 0;
     }
-    public void RussianRoulettePayOut(List<Player> players, int bullet)
+    public void russianRoulettePayOut(List<Player> players, int bullet)
     {
         int losersAnte = losersBet(players, bullet);
         removePlayer(players, bullet);
