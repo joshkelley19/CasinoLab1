@@ -45,10 +45,6 @@ public class RouletteHandler {
         }
     }
 
-    public void setChosenNumber(int playerChoice) {
-        this.chosenNumber = playerChoice;
-    }
-
     public BetType getBetType() {
         return this.betType;
     }
@@ -63,5 +59,9 @@ public class RouletteHandler {
 
     public int getChosenNumber() {
         return this.chosenNumber;
+    }
+
+    public void setChosenNumber(int playerChoice) {
+        this.chosenNumber = playerChoice;
     }
 }

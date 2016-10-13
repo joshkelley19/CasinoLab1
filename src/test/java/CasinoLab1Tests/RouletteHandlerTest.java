@@ -36,6 +36,15 @@ public class RouletteHandlerTest {
     }
 
     @Test
+    public void setChosenNumberTest() {
+        rlh1.setChosenNumber(15);
+        int expected = 15;
+        int actual = rlh1.getChosenNumber();
+
+        Assert.assertEquals("Able to set number guess.", expected, actual);
+    }
+
+    @Test
     public void setBetTypeAndPayoffTest2() {
         rlh1.setBetTypeAndPayoff(4);
         int expected = 35;

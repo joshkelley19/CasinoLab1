@@ -7,4 +7,10 @@ public class Display {
   public void welcome(){
     System.out.println("Welcome to Casino Mobile");
   }
+
+  // Roulette Display -------------------------
+  public void rouletteWelcome() {
+    System.out.println("Welcome to Roulette!");
+  }
+  // ------------------------------------------
 }

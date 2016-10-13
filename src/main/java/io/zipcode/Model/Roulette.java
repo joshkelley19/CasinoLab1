@@ -55,11 +55,15 @@ public class Roulette {
         return this.number;
     }
 
+    public RouletteHandler getRouletteHandler(int handlerIndex) {
+        return this.rouletteHandlers.get(handlerIndex);
+    }
+
     public Map<Integer, String> getWheel() {
         return this.wheel;
     }
 
-    public boolean placeBet(int playerIndex, int betOption) {
+    public boolean placeBetType(int playerIndex, int betOption) {
         this.rouletteHandlers.get(playerIndex).setBetTypeAndPayoff(betOption);
         if(betOption==4) {
             return false;
@@ -98,8 +102,7 @@ public class Roulette {
                     return this.rouletteHandlers.get(0).getPlayer().getBet()*-1;
                 }
             default:
-                System.out.println("Something broke");
-                return -99;
+                return -99999;
         }
     }
 }
