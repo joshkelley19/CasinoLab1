@@ -31,19 +31,11 @@ public class Engine {
 
     public boolean playAgram(int cardIndex, int playerNum) {
 
-        int length = players.size();
-        int startingPlayer = agram.getWonTrick();
-        int currentPlayer;
-        boolean validCard = false;
-
-        currentPlayer = (startingPlayer + playerNum) % length;
-
         try {
-            agram.playTrick(currentPlayer, cardIndex - 1);
+            agram.playTrick(playerNum, cardIndex - 1);
             return true;
 
         } catch (CannotPlayCardException e) {
-//            System.out.println("Error!");
             return false;
 
         }
@@ -58,12 +50,8 @@ public class Engine {
     }
 
     public String getAgramHand (int playerNum) {
-        int length = players.size();
-        int startingPlayer = agram.getWonTrick();
-        int currentPlayer;
-        currentPlayer = (startingPlayer + playerNum) % length;
 
-        return agram.printHand(currentPlayer);
+        return agram.printHand(playerNum);
 
     }
 
@@ -73,6 +61,11 @@ public class Engine {
             bets.set(i, agram.payout(players.get(i)));
         }
 
+    }
+
+    public int getAgramStartingPlayer () {
+
+        return agram.getWonTrick();
     }
 
 }
