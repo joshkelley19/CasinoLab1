@@ -137,6 +137,11 @@ public class Agram {
             playerHand.remove(cardIndex);
             return ranks.indexOf(card.getRank()) + 3;
 
+        } else if (playedSuit.equals(suit)) {
+
+            playerHand.remove(cardIndex);
+            return ranks.indexOf(card.getRank()) + 3;
+
         } else if (!canPlaySuit(hand)) {
 
             playerHand.remove(cardIndex);

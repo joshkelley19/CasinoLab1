@@ -106,16 +106,28 @@ public class Casino {
 //    }
 //
     public void playAgram(){
+        engine.createPlayer("John", 100);
+        engine.createPlayer("Jen", 100);
+        engine.createPlayer("Jeb", 100);
+        engine.createPlayer("Joan", 100);
         List<Integer> bets = new ArrayList<Integer>();
         int length = engine.players.size();
         //Display.agramWelcome();
 
-        engine.initializeAgram();
+        for (int i = 0; i < length; i++) {
+            bets.add(requestBet());
+        }
+
+        engine.initializeAgram(bets);
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < length; j++) {
-                engine.getAgramHand(j);
-                engine.playAgram(ui.getInt(), j);
+                Display.print("Select a card by number");
+                Display.print(engine.getAgramHand(j));
+                while(!(engine.playAgram(ui.getInt(), j))) {
+
+                }
+
             }
             engine.finishAgramRound();
 

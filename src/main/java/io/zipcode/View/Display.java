@@ -41,4 +41,7 @@ public class Display {
     System.out.println("Your bet is inadequate");
   }
 
+  public static void print (String message) {
+      System.out.println(message);
+  }
 }

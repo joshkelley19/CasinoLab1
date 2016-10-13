@@ -1,6 +1,7 @@
 package io.zipcode.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by joshuakelley on 10/11/16.
@@ -18,11 +19,17 @@ public class Engine {
         return bet;
     }
 
-    public void initializeAgram () {
+    public void initializeAgram (List<Integer> bets) {
+        int i = 0;
         agram.playAgram(players);
+
+        for (Player player : players) {
+            player.setBet(bets.get(i));
+            i++;
+        }
     }
 
-    public int playAgram(int cardIndex, int playerNum) {
+    public boolean playAgram(int cardIndex, int playerNum) {
 
         int length = players.size();
         int startingPlayer = agram.getWonTrick();
@@ -30,18 +37,18 @@ public class Engine {
         boolean validCard = false;
 
         currentPlayer = (startingPlayer + playerNum) % length;
-        while (!validCard) {
-            try {
-                agram.playTrick(currentPlayer, cardIndex);
-                validCard = true;
 
-            } catch (CannotPlayCardException e) {
+        try {
+            agram.playTrick(currentPlayer, cardIndex - 1);
+            return true;
 
-            }
+        } catch (CannotPlayCardException e) {
+//            System.out.println("Error!");
+            return false;
+
         }
-
-        return 0;
     }
+
 
     public void finishAgramRound() {
 
@@ -50,13 +57,13 @@ public class Engine {
 
     }
 
-    public void getAgramHand (int playerNum) {
+    public String getAgramHand (int playerNum) {
         int length = players.size();
         int startingPlayer = agram.getWonTrick();
         int currentPlayer;
         currentPlayer = (startingPlayer + playerNum) % length;
 
-        agram.printHand(currentPlayer);
+        return agram.printHand(currentPlayer);
 
     }
 
