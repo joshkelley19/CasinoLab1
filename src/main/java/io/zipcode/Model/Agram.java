@@ -165,7 +165,7 @@ public class Agram {
         }
 
         playedSuit = (playedSuit.equals("")) ? hand.getHand().get(index).getSuit(): playedSuit;
-        
+
         hand.getHand().remove(index);
         return lowest;
     }
@@ -209,6 +209,21 @@ public class Agram {
         result.delete(result.length() - 2, result.length());
 
         return result.toString();
+    }
+
+    public boolean payout (Player player) {
+
+        int bet = player.getBet();
+        int balance = player.getBalance();
+
+        if (players.indexOf(player) == wonTrick) {
+            player.setBalance(balance + bet);
+            return true;
+        } else {
+            player.setBalance(balance - bet);
+            return false;
+        }
+
     }
 
 }
