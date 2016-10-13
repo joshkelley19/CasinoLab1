@@ -23,7 +23,7 @@ public class UserInterface extends Engine{
             userCommand = getValidUserCommand().toUpperCase();
             switch (userCommand) {
                 case "PLAY GOFISH":
-                    return Engine.newGoFishGame(players);
+                    return
                     break;
 
                 case "QUIT":

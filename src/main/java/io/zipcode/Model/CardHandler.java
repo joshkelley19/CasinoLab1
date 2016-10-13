@@ -26,7 +26,33 @@ public class CardHandler {
         return hand;
     }
 
+    protected boolean searchRankInHand(String rank) {
+        for(Card card : this.hand) {
+            if(card.getRank().equals(rank)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    protected Card removeCorrectCard(String rank){
+        for(Card card: this.hand) {
+            if (card.getRank().equals(rank)) {
+                this.hand.remove(card);
+            }
+        }
+        return null;
+    }
+    protected Card addCorrectCard(String rank){
+        for(Card card: this.hand){
+            if(card.getRank().equals(rank)){
+                this.hand.add(card);
+            }
+        }
+        return null;
+    }
     protected Player getPlayer(){
         return player;
     }
+
+
 }
