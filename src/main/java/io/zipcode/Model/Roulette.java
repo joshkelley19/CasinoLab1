@@ -71,7 +71,10 @@ public class Roulette {
         return true;
     }
 
-    public void askforNumber(int playerIndex, int guess) {
+    public void askforNumber(int playerIndex, int guess) throws ValueOutOfRangeException {
+        if(guess < 1 || guess > 36) {
+            throw new ValueOutOfRangeException();
+        }
         this.rouletteHandlers.get(playerIndex).setChosenNumber(guess);
     }
 
