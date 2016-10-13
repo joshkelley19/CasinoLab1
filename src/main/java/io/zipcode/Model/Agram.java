@@ -128,7 +128,14 @@ public class Agram {
             return playForNonHuman(hand);
         }
 
-        Card card = playerHand.get(cardIndex);
+        Card card;
+
+        try {
+            card = playerHand.get(cardIndex);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CannotPlayCardException("You cannot play this card.");
+        }
+
         String suit = card.getSuit();
 
         if (playedSuit.equals("")) {

@@ -67,4 +67,12 @@ public class Engine {
 
     }
 
+    public void settleAgramBets (List<Integer> bets) {
+
+        for (int i = 0; i < players.size(); i++) {
+            bets.set(i, agram.payout(players.get(i)));
+        }
+
+    }
+
 }

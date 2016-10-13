@@ -122,16 +122,19 @@ public class Casino {
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < length; j++) {
-                Display.print("Select a card by number");
+                Display.print("Select a card by number.");
                 Display.print(engine.getAgramHand(j));
                 while(!(engine.playAgram(ui.getInt(), j))) {
-
+                    Display.print("You cannot play that card.");
                 }
+                Display.print("\n");
 
             }
             engine.finishAgramRound();
 
         }
+
+        engine.settleAgramBets(bets);
 
         for (int winnings : bets) {
             Display.result(winnings);
