@@ -13,7 +13,7 @@ public class Agram {
     private int wonTrick;
     private int playerCount;
     private String playedSuit = "";
-    private Deck deck = new Deck ();
+    private Deck deck = new AgramDeck ();
     private CardHandler[] hands;
     private int[] trick;
     List<String> ranks = Arrays.asList("THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN","ACE");
@@ -58,8 +58,9 @@ public class Agram {
             hands[i] = new CardHandler(players.get(i));
         }
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < playerCount; i++) {
             for (int j = 0; j < 6; j++) {
+
                 hands[i].addCard(deck.dealCard());
             }
 
@@ -94,16 +95,10 @@ public class Agram {
         int cardVal;
 
         cardVal = getPlayedCard(hands[playerNum], cardIndex);
-        System.out.println(cardVal);
-        playCard(cardVal, playerNum);
+        trick[playerNum] = cardVal;
 
     }
 
-    private void playCard (int cardVal, int index) {
-
-            trick[index] = cardVal;
-
-    }
 
     public boolean canPlaySuit (CardHandler hand) {
 
@@ -174,7 +169,21 @@ public class Agram {
         return lowest;
     }
 
+
+
     public void resolveOrder () {
+
+        int highest = 0;
+        int i = 0;
+
+        for (int cardVal : trick) {
+
+            if (cardVal > highest) {
+                highest = cardVal;
+                wonTrick = i;
+            }
+            i++;
+        }
 
         playedSuit = "";
         roundCount++;

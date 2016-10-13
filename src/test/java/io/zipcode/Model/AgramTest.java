@@ -37,6 +37,8 @@ public class AgramTest {
             }
         }
 
+        game.resolveOrder();
+
         assertEquals("Player 4 should have won the trick", 3, game.getWonTrick());
 
     }
@@ -61,6 +63,8 @@ public class AgramTest {
             }
         }
 
+        //game.resolveOrder();
+
         assertEquals("The played suit should be hearts", "HEARTS", game.getPlayedSuit());
 
     }
@@ -84,6 +88,8 @@ public class AgramTest {
                 System.out.println("Error");
             }
         }
+
+        game.resolveOrder();
 
 
         int[] expected = {3, 5, 6, 8};
@@ -111,6 +117,8 @@ public class AgramTest {
             }
         }
 
+        game.resolveOrder();
+
 
         assertEquals("The list of players should match up︎", players, game.getPlayers());
 
@@ -134,6 +142,8 @@ public class AgramTest {
                 System.out.println("Error");
             }
         }
+
+        game.resolveOrder();
 
 
         assertTrue("The hand should be able to play the correct suit︎", game.canPlaySuit(game.getHand(0)));

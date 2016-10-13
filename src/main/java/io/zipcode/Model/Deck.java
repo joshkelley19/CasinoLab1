@@ -8,8 +8,8 @@ import java.util.List;
  * Created by adam on 10/12/16.
  */
 public class Deck {
-    String[] ranks = {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
-    String [] suits = {"HEARTS", "SPADES", "DIAMONDS", "CLUBS"};
+    static String[] ranks = {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
+    static String [] suits = {"HEARTS", "SPADES", "DIAMONDS", "CLUBS"};
     List<Card> deck = new ArrayList<>();
 
     public Deck() {
@@ -17,7 +17,7 @@ public class Deck {
         Collections.shuffle(this.deck);
     }
 
-    private void fillDeck() {
+    public void fillDeck() {
         for(int i=0; i<suits.length; i++) {
             for(int j=0; j<ranks.length; j++) {
                 deck.add(new Card(suits[i], ranks[j]));
