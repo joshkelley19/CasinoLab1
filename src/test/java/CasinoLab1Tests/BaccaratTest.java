@@ -18,7 +18,7 @@ public class BaccaratTest {
     @Before
 
     public void setUp(){
-        b = new Baccarat();
+        b = new Baccarat(5, "bank");
     }
 
     @Test
