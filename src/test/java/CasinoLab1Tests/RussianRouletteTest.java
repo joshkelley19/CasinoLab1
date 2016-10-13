@@ -43,12 +43,12 @@ public class RussianRouletteTest
     {
         RussianRoulette rr = new RussianRoulette();
         List<Player> players= new ArrayList<Player>();
-        Player player1 = new Player("Guts", 100);
-        Player player2 = new Player("Griffith", 100);
-        Player player3 = new Player("Casca", 100);
-        Player player4 = new Player("Rickett", 100);
-        Player player5 = new Player("Puck", 100);
-        Player player6 = new Player("Gambino", 100);
+        Player player1 = new Player("Guts", 10000);
+        Player player2 = new Player("Griffith", 10000);
+        Player player3 = new Player("Casca", 10000);
+        Player player4 = new Player("Rickett", 10000);
+        Player player5 = new Player("Puck", 10000);
+        Player player6 = new Player("Gambino", 10000);
         players.add(player1);
         players.add(player2);
         players.add(player3);
@@ -59,6 +59,50 @@ public class RussianRouletteTest
         int actual = players.size();
         int expected = 5;
         assertEquals("Array size should be 5",actual, expected);
+    }
+    @Test
+    public void losersBetTest()
+    {
+        RussianRoulette rr = new RussianRoulette();
+        List<Player> players= new ArrayList<Player>();
+        Player player1 = new Player("Guts", 10000);
+        Player player2 = new Player("Griffith", 10000);
+        Player player3 = new Player("Casca", 10000);
+        Player player4 = new Player("Rickett", 10000);
+        Player player5 = new Player("Puck", 10000);
+        Player player6 = new Player("Gambino", 10000);
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
+        players.add(player5);
+        players.add(player6);
+        int expected = rr.losersBet(players, 0);
+        int actual = 10000;
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void payOut()
+    {
+        RussianRoulette rr = new RussianRoulette();
+        List<Player> players= new ArrayList<Player>();
+        Player player1 = new Player("Guts", 10000);
+        Player player2 = new Player("Griffith", 10000);
+        Player player3 = new Player("Casca", 10000);
+        Player player4 = new Player("Rickett", 10000);
+        Player player5 = new Player("Puck", 10000);
+        Player player6 = new Player("Gambino", 10000);
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
+        players.add(player5);
+        players.add(player6);
+        rr.payOut(players, 10000);
+        rr.removePlayer(players, 2);
+        int actual = player1.getBalance();
+        int expected = 12000;
+        assertEquals("expected should be 12000",expected, actual);
     }
 
 
