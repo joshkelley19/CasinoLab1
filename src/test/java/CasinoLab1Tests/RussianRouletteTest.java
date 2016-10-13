@@ -104,6 +104,53 @@ public class RussianRouletteTest
         int expected = 12000;
         assertEquals("expected should be 12000",expected, actual);
     }
+    @Test
+    public void fillRosterTest(){
+        RussianRoulette rr = new RussianRoulette();
+        List<Player> players = new ArrayList<Player>();
+        rr.fillRoster(players);
+        int actual = players.size();
+        int expected = 6;
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void fillRosterTest2()
+    {
+        RussianRoulette rr = new RussianRoulette();
+        List<Player> players = new ArrayList<Player>();
+        Player player1 = new Player("Guts", 10000);
+        Player player2 = new Player("Griffith", 10000);
+        Player player3 = new Player("Casca", 10000);
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        rr.fillRoster(players);
+        int actual = players.size();
+        int expected = 6;
+        assertEquals(expected, actual);
+    }
+    @Test
+    public void emptyRosterTest()
+    {
+        RussianRoulette rr = new RussianRoulette();
+        List<Player> players = new ArrayList<Player>();
+        Player player1 = new Player("Guts", 10000);
+        Player player2 = new Player("Shady Stranger", 10000);
+        Player player3 = new Player("Shady Stranger", 10000);
+        Player player4 = new Player("Shady Stranger", 10000);
+        Player player5 = new Player("Shady Stranger", 10000);
+        Player player6 = new Player("Shady Stranger", 10000);
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
+        players.add(player5);
+        players.add(player6);
+        rr.emptyRoster(players);
+        int actual = players.size();
+        int expected = 1;
+        assertEquals(expected, actual);
+    }
 
 
 }
