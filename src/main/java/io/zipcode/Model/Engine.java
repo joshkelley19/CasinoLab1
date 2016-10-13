@@ -5,7 +5,17 @@ import java.util.ArrayList;
 /**
  * Created by joshuakelley on 10/11/16.
  */
-public class Engine {
+public class Engine{
+    private Class game;
     public ArrayList<Player> players = new ArrayList<>();//player info passed through casino,can manipulate without passing in/returning
+
+    public GoFish newGoFishGame(ArrayList<Player>players){
+        int playerBet = GoFish.betInput("Please enter your bet");
+        GoFish.start(players);
+        GoFish.giveCards(goFishPlayers);
+        String playerCardChoice = User.stringInput("Please enter a card!");
+
+    }
+
 
 }

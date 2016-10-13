@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="CasinoLab1" />
+        <module name="CasinoLab" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="CasinoLab1" target="1.8" />
+      <module name="CasinoLab" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
