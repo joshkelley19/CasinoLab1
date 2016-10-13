@@ -21,7 +21,7 @@ public class Display {
   }
 
   public static void requestGame() {
-    System.out.println("What Table would you like to join?\nSlots\nBlackjack");
+    System.out.println("What would you like to do?\nSlots\nBlackjack\nRoulette\nAgram\nGo Fish\nRussian Roulette\nBaccarat\nWar\n\nQuit");
   }
 
   public static void requestBet(){
@@ -40,7 +40,6 @@ public class Display {
   public static void weakBet() {
     System.out.println("Your bet is inadequate");
   }
-
   // Roulette Display -------------------------
   public static void rouletteWelcome() {
     System.out.println("Welcome to Roulette!");
@@ -63,4 +62,7 @@ public class Display {
     System.out.println("Color: " + color + ", Number: " + number);
   }
   // ------------------------------------------
+  public static void playAgain(){
+    System.out.print("Would you like to play again? Yes or No: ");
+  }
 }
