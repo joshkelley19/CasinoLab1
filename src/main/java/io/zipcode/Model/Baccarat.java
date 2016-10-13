@@ -13,6 +13,7 @@ public class Baccarat{
     int result;
     int bet;
     String bettedOn;
+    int wintLoseTie;
 
     public Baccarat(int bet, String bettedOn){
         this.bet=bet;
@@ -125,12 +126,8 @@ public class Baccarat{
         if(CheckplayerSum()<6){
             if(CheckDealerSum() <8){
                 playerHand.add(deck.dealCard());
-            }else if(bettedOn.equals("bank")){
-                setResult(bet);
-                isRunning = false;
             }else{
-                setResult(-bet);
-                isRunning = false;
+                getWinner();
             }
         }
         return isRunning;
@@ -185,21 +182,28 @@ public class Baccarat{
     public void getWinner(){
         if(finalScoreDealer() > finalScoreDealer()){
             if(bettedOn.equals("bank")){
+                wintLoseTie = 1;
                 setResult(bet);
                 isRunning = false;
             }else{
+                wintLoseTie = 2;
                 setResult(-bet);
                 isRunning = false;
             }
 
         }else if(finalScorePlayer() > finalScoreDealer()){
             if(bettedOn.equals("player")){
+                wintLoseTie = 1;
                 setResult(bet);
                 isRunning = false;
             }else{
+                wintLoseTie = 2;
                 setResult(-bet);
                 isRunning = false;
             }
+        }else{
+            wintLoseTie = 3;
+            isRunning = false;
         }
     }
 
