@@ -8,5 +8,145 @@ import io.zipcode.Model.Engine;
 public class Casino {
     Engine engine = new Engine();
     UserInput ui = new UserInput();
-    Display display = new Display();
+//
+//    public void startGame(){
+//        Display.whatsYourName();
+//        String name = ui.getString();
+//        Display.howMuchMoney();
+//        int balance = ui.getInt();
+//        engine.createPlayer(name, balance);
+//    }
+//
+//    public void enterCasino(){
+//        Display.welcomeMessage();
+//        String answer;
+//        do{
+//            Display.requestGame();
+//            answer = ui.getString();
+//        }while (gameChoice(answer));
+//        Display.leaveCasino();
+//    }
+//
+//    public boolean gameChoice(String game){
+//        //regex
+//        try{
+//            switch (game.toUpperCase()){
+//                case "SLOTS": playSlots();break;
+//                case "BLACKJACK": playBlackjack();break;
+//                case "ROULETTE": playRoulette();break;
+//                case "AGRAM": playAgram();break;
+//                case "GO FISH": playGoFish();break;
+//                case "RUSSIAN ROULETTE": playRussianRoulette();break;
+//                case "BACCARAT": playBaccarat();break;
+//                case "WAR": playWar();break;
+//                case "QUIT": return false;
+//                default:
+//                    System.out.println("We did not understand your request, please try again.");return true;
+//            }
+//        }catch (InvalidBetException e){
+//            Display.weakBet();
+//        }catch (ZeroBalanceException z){
+//
+//        }catch (GameSizeException g){
+//
+//        }finally {
+//            return true;
+//        }
+//    }
+//
+//    private void playRoulette() {
+//        int bet;
+//        int betType;
+//        int numberGuess = 1;
+//        String response;
+//        Display.welcomeToRoulette();
+//        do{
+//
+//            Display.betType();
+//            betType=ui.getString();
+//            bet=requestBet();
+//            if(betType==4){
+//                numberGuess=ui.getInt();
+//            }
+//            Display.result(engine.playRoulette(bet,betType,numberGuess));
+//            Display.playAgain();
+//            response = ui.getString();
+//        }while (response.toUpperCase()=="YES");
+//    }
+//
+//    public void playSlots(){
+//        int bet;
+//        Display.slotsWelcome();
+//        do{
+//            bet = requestBet();
+//            Display.result(engine.playSlots(bet));
+//        }while (engine.isRunning());
+//    }
+//
+//    public void playBaccarat(){
+//        int bet;
+//        Display.baccaratWelcome();
+//        do{
+//            bet = requestBet();
+//            Display.Baccarat();
+//            Display.result(engine.playBaccarat(bet));
+//        }while (engine.gameRunning);
+//    }
+//
+//    public void playBlackjack(){
+//        int bet;
+//        Display.blackjackWelcome();
+//        do{
+//            bet = requestBet();
+//            Display.result(engine.playBlackjack(bet));
+//        }while (engine.gameRunning);
+//    }
+//
+//    public void playAgram(){
+//        int bet;
+//        Display.agramWelcome();
+//        do{
+//            bet = requestBet();
+//            Display.result(engine.playAgram(bet));
+//        }while (engine.gameRunning);
+//    }
+//
+//    public void playGoFish(){
+//        int bet;
+//        Display.goFishWelcome();
+//        do{
+//            bet = requestBet();
+//            Display.result(engine.playGoFish(bet));
+//        }while (engine.gameRunning);
+//    }
+//
+//    public void playRussianRoulette(){
+//        int bet;
+//        Display.russianRouletteWelcome();
+//        do{
+//            Display.pressEnter();
+//            Display.result(engine.playRussianRoulette());
+//        }while (engine.gameRunning);
+//    }
+//
+//    public void playWar(){
+//        int bet;
+//        Display.warWelcome();
+//        do{
+//            bet = requestBet();
+//            Display.result(engine.playWar(bet));
+//        }while (engine.gameRunning);
+//    }
+//
+//    public int requestBet(){
+//        Display.requestBet();
+//        return ui.getInt();
+//    }
+
+//    public static void main(String[] args) {
+//        Casino casino = new Casino();
+//
+//        casino.startGame();
+//        casino.enterCasino();
+//    }
 }
