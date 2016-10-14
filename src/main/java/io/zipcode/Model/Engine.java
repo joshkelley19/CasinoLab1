@@ -36,6 +36,7 @@ public class Engine {
 
         blackjack.clearBlackjackHandlers();
         blackjack.clearDealerHand();
+        blackjack.clearWinners();
         blackjack.fillCardHandler(players);
         roundBlackjack();
 

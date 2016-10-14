@@ -94,7 +94,8 @@ public class Casino {
             Display.hitOrStay();
             hitStay = ui.getInt();
         } while (!engine.loopPortion(hitStay));
-        Display.result(engine.blackjackWinnings(bet));
+        //Display.result(engine.blackjackWinnings(bet));
+        Display.blackjackResult(engine.blackjackWinnings(bet));
     }
 
     public void playAgram() {

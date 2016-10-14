@@ -38,6 +38,11 @@ public class Blackjack {
     public void clearBlackjackHandlers(){
         blackjackCardHandlers.clear();
     }
+    public void clearWinners(){
+        winners.clear();
+        tied.clear();
+        losers.clear();
+    }
 
     public List<Card> getDealerHand(){
         return dealerHand;
@@ -93,6 +98,13 @@ public class Blackjack {
         if(checkTotal(dealerHand) < 18) {
             dealerHand.add(blackjackDeck.dealCard());
         }else{
+            for(CardHandler x : blackjackCardHandlers){
+                if(checkTotal(x.getHand()) > 21){
+                    tied.add(x.getPlayer());
+                }else {
+                    winners.add(x.getPlayer());
+                }
+            }
             gameOver = true;
         }
         return gameOver;
