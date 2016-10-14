@@ -26,7 +26,7 @@ public class CardHandler {
         return hand;
     }
 
-    protected boolean searchRankInHand(String rank) {
+    protected boolean hasRankInHand(String rank) {
         for(Card card : this.hand) {
             if(card.getRank().equals(rank)) {
                 return true;

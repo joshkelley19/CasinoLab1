@@ -8,9 +8,9 @@ import java.util.List;
  * Created by adam on 10/12/16.
  */
 public class Deck {
-    String[] ranks = {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
-    String [] suits = {"HEARTS", "SPADES", "DIAMONDS", "CLUBS"};
-    List<Card> deck = new ArrayList<>();
+    protected String[] ranks = {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
+    protected String [] suits = {"HEARTS", "SPADES", "DIAMONDS", "CLUBS"};
+    private List<Card> deck = new ArrayList<>();
 
     public Deck() {
         this.fillDeck();
@@ -27,6 +27,10 @@ public class Deck {
 
     private void shuffle() {
         Collections.shuffle(deck);
+    }
+
+    public List getDeck(){
+        return deck;
     }
 
     public Card dealCard() {

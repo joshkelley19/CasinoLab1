@@ -1,11 +1,12 @@
-import io.zipcode.Model.UserInterface;
+import io.zipcode.View.Casino;
 
 /**
  * Created by joshuakelley on 10/12/16.
  */
 public class App {
     public static void main(String[] args){
-        UserInterface userInterface = new UserInterface();
-        UserInterface.getPlayerInfo();
+        Casino casino = new Casino();
+        casino.startGame();
+
     }
 }

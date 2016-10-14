@@ -1,38 +1,44 @@
 package io.zipcode.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-
-import static com.sun.tools.doclint.Entity.empty;
+import java.util.*;
 
 /**
  * Created by kyle on 10/12/16.
  */
-public class GoFish extends Engine {
-    private ArrayList<CardHandler> goFishPlayers = new ArrayList<>();
-    private CardHandler hand;
-    private Deck goFishDeck = new Deck();
-    private ArrayList<Integer> playerBets = new ArrayList<Integer>();
-    private List<Player> players;
+public class GoFish {
+
+    //Fields -------------------------------------------------------
+
+    public ArrayList<CardHandler> goFishPlayers = new ArrayList<>();
+    public CardHandler hand;
+    public Deck goFishDeck = new Deck();
+    public ArrayList<Player> players;
     private CardHandler dealerHand;
+    private boolean isRunning = true;
+    int bet;
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public CardHandler getHand(int indexNum) {
-        return hand;
-    }
-
-    public void playGoFish(ArrayList<Player> players) {
+    //Constructor --------------------------------------------------
+    public GoFish(List<Player> players) {
         for (Player p : players) {
             goFishPlayers.add(new CardHandler(p));
         }
     }
 
-    public void giveCards(ArrayList<CardHandler> goFishCards) {
+    //Methods --------------------------------------------------------
+
+    public void setDealerHand() {
+        int numberOfCards;
+        if (goFishPlayers.size() > 2) {
+            numberOfCards = 5;
+        } else {
+            numberOfCards = 7;
+        }
+        for (int i = 0; i <= numberOfCards; i++) {
+            dealerHand.addCard(goFishDeck.dealCard());
+        }
+    }
+
+    public void giveCards(List goFishCards) {
         int numberOfCards;
         if (goFishPlayers.size() > 2) {
             numberOfCards = 5;
@@ -45,18 +51,54 @@ public class GoFish extends Engine {
         }
     }
 
-    public CardHandler playGoFish() throws NoSuchElementException {
-        while (goFishDeck.deck.size() > 0) {
-            //UI prompt will ask for input, variable will be "choice"
-            String choice = User.stringInput("Please enter a card");
-            if (dealerHand.searchRankInHand(choice)) {
-                dealerHand.removeCorrectCard(choice);
-                this.hand.addCorrectCard(choice);
-            } else {
-                Card newCard = goFishDeck.dealCard();
-                this.hand.addCard(newCard);
-            }
-        }
-        return this.hand;
+    public int getDeckSize() {
+        return goFishDeck.getDeck().size();
     }
-}
+
+    public List<Card> playTheGame(String choice) {
+        if (dealerHand.hasRankInHand(choice)) {
+            dealerHand.removeCorrectCard(choice);
+            this.hand.addCorrectCard(choice);
+        } else {
+            Card newCard = goFishDeck.dealCard();
+            this.hand.addCard(newCard);
+        }
+        return hand.getHand();
+    }
+
+    public boolean determineWinner() {
+        //players hand has more cards than other players hands, he is the winner
+        //return that player as the winner
+        if(goFishPlayers.get(0).getHand().size() > dealerHand.getHand().size()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public int determineWinnings(int bet) {
+        int winnings;
+        if (determineWinner() == true) {
+             winnings = bet * 2;
+        } else {
+             winnings = bet - bet;
+        }
+        return winnings;
+    }
+
+    }
+
+
+//    public CardHandler playGoFish() throws NoSuchElementException {
+//        while (goFishDeck.getDeck().size() > 0) {
+//UI prompt will ask for input, variable will be "choice"
+//            String choice = User.stringInput("Please enter a card");
+//            if (dealerHand.hasRankInHand(choice)) {
+//                dealerHand.removeCorrectCard(choice);
+//                this.hand.addCorrectCard(choice);
+//            } else {
+//                Card newCard = goFishDeck.dealCard();
+//                this.hand.addCard(newCard);
+//            }
+//              }
+//              return this.hand;
+//              }
