@@ -2,8 +2,6 @@ package io.zipcode.storage;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.javafx.property.adapter.ReadOnlyJavaBeanPropertyBuilderHelper;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import io.zipcode.Model.Player;
 
 import java.io.File;
@@ -34,6 +32,7 @@ public class JSONHandler {
             return players;
         } catch (IOException e) {
             System.out.println(e);
+            return null;
         }
     }
 }
