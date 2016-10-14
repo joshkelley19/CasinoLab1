@@ -8,4 +8,12 @@ import io.zipcode.Model.*;
  */
 public class App {
 
+    public static void main(String[] args) {
+        Casino casino = new Casino();
+        for (int i = 0; i < 2; i++) {
+            casino.startGame();
+        }
+        casino.enterCasino();
+    }
+
 }

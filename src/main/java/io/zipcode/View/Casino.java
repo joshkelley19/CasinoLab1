@@ -37,9 +37,17 @@ public class Casino {
     public boolean gameChoice(String game){
         //regex
         try{
-            switch (game.toUpperCase()){
+            switch (interpretGame(game)){
 
-                case "BLACKJACK": playBlackjack();break;
+                case "SLOTS": playSlots(); break;
+
+                case "BLACKJACK": playBlackjack(); break;
+
+                case "ROULETTE": playRoulette(); break;
+
+                case "AGRAM": playAgram(); break;
+
+                case "BACCARAT": playBaccarat(); break;
 
                 case "QUIT": return false;
                 default:
@@ -181,6 +189,29 @@ public class Casino {
             engine.warPayOut(bet, winner);
         }while(answer.toUpperCase().equals("YES"));
 
+    }
+
+    private String interpretGame (String game) {
+
+        String result;
+        String [] regexes = {"b(l){1,2}a[ck]{2}ja[ck]{2}", "b(l){1,2}a[ck]{2}ja[ck]{2}", "b(l){1,2}a[ck]{2}ja[ck]{2}",
+                "b(l){1,2}a[ck]{2}ja[ck]{2}", "b(l){1,2}a[ck]{2}ja[ck]{2}", "b(l){1,2}a[ck]{2}ja[ck]{2}",
+                "b(l){1,2}a[ck]{2}ja[ck]{2}", "b(l){1,2}a[ck]{2}ja[ck]{2}"};
+
+        String [] games = {"BLACKJACK", "BLACKJACK", "BLACKJACK", "BLACKJACK",
+                "BLACKJACK", "BLACKJACK", "BLACKJACK", "BLACKJACK"};
+
+        for (int i = 0; i < 8; i++) {
+            result = game.toLowerCase();
+            result = result.replaceFirst(regexes[i], games[i]);
+
+            if (!(result.equals(game.toLowerCase()))) {
+                System.out.println(result);
+                return result;
+            }
+        }
+
+        return "";
     }
 
     public static void main(String[] args) {
