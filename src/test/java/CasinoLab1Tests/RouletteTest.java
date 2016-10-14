@@ -3,6 +3,7 @@ package CasinoLab1Tests;
 import io.zipcode.Model.Player;
 import io.zipcode.Model.Roulette;
 import io.zipcode.Model.RouletteHandler;
+import io.zipcode.Model.ValueOutOfRangeException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,6 +65,12 @@ public class RouletteTest {
         int acutal = rl.getRouletteHandler(0).getChosenNumber();
 
         Assert.assertEquals("Able to get number from user.", expected, acutal);
+    }
+
+    @Test (expected = ValueOutOfRangeException.class)
+    public void askForNumberTest2() {
+        rl.placeBetType(0, 4);
+        rl.askforNumber(0, 100);
     }
 
     @Test

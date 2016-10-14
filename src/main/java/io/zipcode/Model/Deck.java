@@ -26,10 +26,6 @@ public class Deck {
         }
     }
 
-    public List<Card> getDeck () {
-        return deck;
-    }
-
     public void setDeck (List<Card> deck) {
 
         this.deck = deck;
@@ -37,6 +33,10 @@ public class Deck {
 
     private void shuffle() {
         Collections.shuffle(deck);
+    }
+
+    public List<Card> getDeck() {
+        return this.deck;
     }
 
     public Card dealCard() {
