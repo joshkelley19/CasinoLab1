@@ -32,11 +32,12 @@ public class War
         }
     }
 
-    public void dealCards()
+    public String dealCards()
     {
         Card playersDraw = deck.dealCard();
         Card dealersDraw = deck.dealCard();
-        getWinner(playersDraw, dealersDraw);
+        display.displayCards(playersDraw, dealersDraw);
+        return getWinner(playersDraw, dealersDraw);
     }
 
     public void warPayOut(List<Player> players, String winner)
@@ -110,5 +111,6 @@ public class War
             return 0;
         }
     }
+
 
 }

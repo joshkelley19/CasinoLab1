@@ -18,10 +18,8 @@ public class Engine {
     {
       return players;
     }
-
     public void playRussianRoulette()
     {
-        //int bullet = rr.loadGun();
         rr.loadGun();
         boolean keepGoing = true;
         rr.fillRoster(players);
@@ -42,8 +40,14 @@ public class Engine {
     {
         rr.plusCounter();
     }
-    public void playWar()
+    public String playWar()
     {
-
+        return war.dealCards();
     }
+    public void warPayOut(int bet, String winner)
+    {
+        players.get(0).setBet(bet);
+        war.warPayOut(players, winner);
+    }
+
 }
