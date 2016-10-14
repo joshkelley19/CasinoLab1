@@ -78,4 +78,10 @@ public class Display {
   public static void playAgain(){
     System.out.print("Would you like to play again? Yes or No: ");
   }
+
+  public static void baccaratBetType() {
+    System.out.println("Please choose a type of bet:");
+    System.out.println("bank");
+    System.out.println("[player");
+  }
 }

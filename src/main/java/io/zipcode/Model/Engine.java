@@ -14,6 +14,7 @@ public class Engine {
     private ArrayList<Player> players = new ArrayList<>();
     private Slots slots = new Slots();
     private boolean isRunning=true;
+    private Baccarat baccarat;
 
     public void createPlayer(String name, int balance){
         players.add(new Player(name,balance));
@@ -114,6 +115,22 @@ public class Engine {
         players.get(0).setBalance(winnings);
         players.get(0).setBet(0);
         return winnings;
+
+    }
+
+    public int playBaccarat(int bet, String betType){
+        baccarat = new Baccarat(bet, betType);
+        baccarat.firstDeal();
+        baccarat.CheckplayerSum();
+        baccarat.CheckDealerSum();
+        baccarat.playersThirdCard();
+        if(baccarat.isRunning()){
+            baccarat.DealersThirdCard();
+            baccarat.getWinner();
+        }else{
+            return baccarat.getResult();
+        }
+        return baccarat.getResult();
 
     }
 
