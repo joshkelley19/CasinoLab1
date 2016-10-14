@@ -1,7 +1,7 @@
 package io.zipcode.Model;
 
+
 import io.zipcode.View.Display;
-import io.zipcode.View.UserInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,8 @@ public class Engine {
     private boolean isRunning=true;
     private Baccarat baccarat;
     private Blackjack blackjack = new Blackjack();
+    RussianRoulette rr = new RussianRoulette();
+    War war = new War();
 
     public void createPlayer(String name, int balance){
         players.add(new Player(name,balance));
@@ -160,19 +162,57 @@ public class Engine {
 
     }
 
-    public int playBaccarat(int bet, String betType){
+    public int playBaccarat(int bet, String betType) {
         baccarat = new Baccarat(bet, betType);
         baccarat.firstDeal();
         baccarat.CheckplayerSum();
         baccarat.CheckDealerSum();
         baccarat.playersThirdCard();
-        if(baccarat.isRunning()){
+        if (baccarat.isRunning()) {
             baccarat.DealersThirdCard();
             baccarat.getWinner();
-        }else{
+        } else {
             return baccarat.getResult();
         }
         return baccarat.getResult();
+    }
+
+
+
+    public List getPlayer()
+    {
+      return players;
+    }
+    public void playRussianRoulette()
+    {
+        rr.loadGun();
+        boolean keepGoing = true;
+        rr.fillRoster(players);
+    }
+    public boolean pullTrigger()
+    {
+        return rr.pullTrigger(rr.getCounter(), rr.getBullet());
+    }
+    public void russianroulettePayOut()
+    {
+        rr.russianRoulettePayOut(players, rr.getBullet());
+    }
+    public RussianRoulette getRR()
+    {
+        return rr;
+    }
+    public void plusCounter()
+    {
+        rr.plusCounter();
+    }
+    public String playWar()
+    {
+        return war.dealCards();
+    }
+    public void warPayOut(int bet, String winner)
+    {
+        players.get(0).setBet(bet);
+        war.warPayOut(players, winner);
 
     }
 
