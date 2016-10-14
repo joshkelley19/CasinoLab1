@@ -150,6 +150,17 @@ public class Casino {
         }while (response.toUpperCase().equals("YES"));
     }
 
+    public void playBaccarat(){
+        Display.baccaratWelcome();
+        do{
+            int bet = requestBet();
+            Display.baccaratBetType();
+            String betType = ui.getString();
+            Display.result(engine.playBaccarat(bet,betType));
+            Display.playAgain();
+        }while (ui.getString().equalsIgnoreCase("yes"));
+    }
+
     public static void main(String[] args) {
         Casino casino = new Casino();
         casino.startGame();

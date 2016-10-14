@@ -84,4 +84,8 @@ public class Display {
     System.out.println("bank");
     System.out.println("[player");
   }
+
+  public void baccaratWelcome(){
+    System.out.println("Welcome to Baccarat!");
+  }
 }
