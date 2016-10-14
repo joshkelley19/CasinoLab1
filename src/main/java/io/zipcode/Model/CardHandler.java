@@ -14,7 +14,7 @@ public class CardHandler {
         this.player=player;
     }
 
-    protected void addCard(Card card){
+    public void addCard(Card card){
         hand.add(card);
     }
 
@@ -22,11 +22,11 @@ public class CardHandler {
         return hand.remove(card);
     }//remove method returns boolean if taking object as param. returns object if taking index as param
 
-    protected List<Card> getHand(){
+    public List<Card> getHand(){
         return hand;
     }
 
-    protected Player getPlayer(){
+    public Player getPlayer(){
         return player;
     }
 }
