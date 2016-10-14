@@ -141,6 +141,10 @@ public class Display {
     System.out.println("bank");
     System.out.println("player");
   }
+
+  public static void baccaratWelcome(){
+    System.out.println("Welcome to Baccarat!");
+  }
 }
 
 
