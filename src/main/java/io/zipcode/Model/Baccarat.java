@@ -180,25 +180,26 @@ public class Baccarat{
     }
 
     public void getWinner(){
-        if(finalScoreDealer() > finalScoreDealer()){
+        if(finalScoreDealer() > finalScorePlayer()){
             if(bettedOn.equals("bank")){
 
                 setResult(bet);
                 isRunning = false;
             }else{
-
-                setResult(-bet);
+                setBetLoser(bet);
+                setResult(bet);
                 isRunning = false;
+
             }
 
         }else if(finalScorePlayer() > finalScoreDealer()){
             if(bettedOn.equals("player")){
-
+                setBetWinner(bet);
                 setResult(bet);
                 isRunning = false;
             }else{
-
-                setResult(-bet);
+                setBetLoser(bet);
+                setResult(bet);
                 isRunning = false;
             }
         }else{
@@ -233,5 +234,12 @@ public class Baccarat{
 
     private void setResult(int result) {
         this.result = result;
+    }
+
+    public void setBetWinner(int bet) {
+        this.bet = bet;
+    }
+    public void setBetLoser(int bet) {
+        this.bet = 0-bet;
     }
 }
