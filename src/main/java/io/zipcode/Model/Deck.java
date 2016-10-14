@@ -43,7 +43,4 @@ public class Deck {
         return this.deck.remove(0);
     }
 
-    public List<Card> getDeck(){
-        return deck;
-    }
 }

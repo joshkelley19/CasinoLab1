@@ -67,7 +67,6 @@ public class Casino {
     }
 
     public void playAgram() {
-
         List<Integer> bets = new ArrayList<Integer>();
         int length = engine.getPlayers().size();
         int startingPlayer;
