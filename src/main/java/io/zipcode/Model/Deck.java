@@ -8,13 +8,14 @@ import java.util.List;
  * Created by adam on 10/12/16.
  */
 public class Deck {
-    String[] ranks = {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
-    String [] suits = {"HEARTS", "SPADES", "DIAMONDS", "CLUBS"};
-    List<Card> deck = new ArrayList<>();
+
+    protected static String[] ranks = {"ACE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "JACK", "QUEEN", "KING"};
+    protected static String [] suits = {"HEARTS", "SPADES", "DIAMONDS", "CLUBS"};
+    protected List<Card> deck = new ArrayList<>();
 
     public Deck() {
         this.fillDeck();
-        Collections.shuffle(this.deck);
+        shuffle();
     }
 
     private void fillDeck() {
@@ -25,8 +26,17 @@ public class Deck {
         }
     }
 
+    public void setDeck (List<Card> deck) {
+
+        this.deck = deck;
+    }
+
     private void shuffle() {
         Collections.shuffle(deck);
+    }
+
+    public List<Card> getDeck() {
+        return this.deck;
     }
 
     public Card dealCard() {
