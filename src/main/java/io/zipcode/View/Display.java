@@ -82,6 +82,6 @@ public class Display {
   public static void baccaratBetType() {
     System.out.println("Please choose a type of bet:");
     System.out.println("bank");
-    System.out.println("[player");
+    System.out.println("player");
   }
 }
