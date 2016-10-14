@@ -22,8 +22,8 @@ public class AgramTest {
     @Before
     public void initilize () {
 
-        for(int i=0; i<ranks.length; i++) {
-            for(int j=0; j<suits.length; j++) {
+        for(int i=0; i< ranks.length; i++) {
+            for(int j=0; j< suits.length; j++) {
                 deck.add(new Card(suits[j], ranks[i]));
             }
         }
@@ -32,6 +32,7 @@ public class AgramTest {
         game.playAgram(players, deck);
         for (int i = 0; i < 4; i++) {
             try {
+
                 game.playTrick(i, 7);
             } catch (CannotPlayCardException e) {
                 System.out.println("Error");
@@ -77,6 +78,13 @@ public class AgramTest {
     public void canPlaySuitTest () {
 
         assertTrue("The hand should be able to play the correct suit︎", game.canPlaySuit(game.getHand(0)));
+
+    }
+
+    @Test
+    public void lastPlayedTest () {
+
+        assertEquals("The card's suit should be EIGHT of HEARTS.︎", "EIGHT of HEARTS", game.getLastPlayed().toString());
 
     }
 

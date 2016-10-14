@@ -8,17 +8,14 @@ import java.util.*;
 
 public class Agram {
 
-    private boolean isRunning = true;
-    private int roundCount = 1;
     private int wonTrick;
-    private int playerCount;
     private String playedSuit = "";
     private Deck deck = new AgramDeck ();
     private CardHandler[] hands;
     private int[] trick;
     List<String> ranks = Arrays.asList("THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN","ACE");
     private List<Player> players;
-    private Card lastPlayed;
+    private StringBuilder lastPlayed = new StringBuilder();
 
 
     public int getWonTrick () {
@@ -47,7 +44,7 @@ public class Agram {
         return hands[index];
     }
 
-    public Card getLastPlayed () {
+    public StringBuilder getLastPlayed () {
 
         return lastPlayed;
     }
@@ -55,7 +52,7 @@ public class Agram {
 
     public void playAgram(List<Player> players) {
 
-        playerCount = players.size();
+        int playerCount = players.size();
         hands = new CardHandler[playerCount];
         trick = new int[playerCount];
         this.players = players;
@@ -77,11 +74,10 @@ public class Agram {
     public void playAgram(List<Player> players, List<Card> setDeck) {
 
         deck.setDeck(setDeck);
-        playerCount = players.size();
+        int playerCount = players.size();
         hands = new CardHandler[playerCount];
         trick = new int[playerCount];
         this.players = players;
-        roundCount = 1;
 
         for (int i = 0; i < playerCount; i++) {
             hands[i] = new CardHandler(players.get(i));
@@ -128,6 +124,7 @@ public class Agram {
     public int getPlayedCard (CardHandler hand, int cardIndex) throws CannotPlayCardException {
 
         List<Card> playerHand = hand.getHand();
+        lastPlayed.delete(0, lastPlayed.length());
 
         if (cardIndex > 6) {
 
@@ -147,19 +144,25 @@ public class Agram {
         if (playedSuit.equals("")) {
 
             playedSuit = suit;
-            lastPlayed = playerHand.get(cardIndex);
+            lastPlayed.append(playerHand.get(cardIndex).getRank());
+            lastPlayed.append(" of ");
+            lastPlayed.append(playerHand.get(cardIndex).getSuit());
             playerHand.remove(cardIndex);
             return ranks.indexOf(card.getRank()) + 3;
 
         } else if (playedSuit.equals(suit)) {
 
-            lastPlayed = playerHand.get(cardIndex);
+            lastPlayed.append(playerHand.get(cardIndex).getRank());
+            lastPlayed.append(" of ");
+            lastPlayed.append(playerHand.get(cardIndex).getSuit());
             playerHand.remove(cardIndex);
             return ranks.indexOf(card.getRank()) + 3;
 
         } else if (!canPlaySuit(hand)) {
 
-            lastPlayed = playerHand.get(cardIndex);
+            lastPlayed.append(playerHand.get(cardIndex).getRank());
+            lastPlayed.append(" of ");
+            lastPlayed.append(playerHand.get(cardIndex).getSuit());
             playerHand.remove(cardIndex);
             return 0;
 
@@ -191,7 +194,9 @@ public class Agram {
         }
 
         playedSuit = (playedSuit.equals("")) ? playerHand.get(index).getSuit(): playedSuit;
-
+        lastPlayed.append(playerHand.get(index).getRank());
+        lastPlayed.append(" of ");
+        lastPlayed.append(playerHand.get(index).getSuit());
         playerHand.remove(index);
         return lowest;
     }
@@ -216,7 +221,6 @@ public class Agram {
     public void prepNextRound () {
 
         playedSuit = "";
-        roundCount++;
 
     }
 

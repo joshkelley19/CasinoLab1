@@ -125,14 +125,9 @@ public class Engine {
 
     public String getAgramLastPlayed () {
 
-        StringBuilder result = new StringBuilder();
-        Card lastPlayed = agram.getLastPlayed();
+        StringBuilder lastPlayed = agram.getLastPlayed();
 
-        result.append(lastPlayed.getRank());
-        result.append(" of ");
-        result.append(lastPlayed.getSuit());
-
-        return  result.toString();
+        return  lastPlayed.toString();
     }
 
     public String getAgramPlayedSuit () {
@@ -189,12 +184,10 @@ public class Engine {
 
     }
 
-
-
-    public List getPlayer()
-    {
+    public List getPlayer() {
       return players;
     }
+
     public void playRussianRoulette()
     {
         rr.loadGun();
