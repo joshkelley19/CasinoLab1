@@ -14,7 +14,7 @@ public class Engine {
     //Instance variables //
     private Roulette roulette;
     private Agram agram = new Agram();
-    private ArrayList<Player> players = new ArrayList<>(); //Change to list
+    private List<Player> players = new ArrayList<>(); //Change to list
     private Slots slots = new Slots();
     private boolean isRunning=true;
     private Baccarat baccarat;

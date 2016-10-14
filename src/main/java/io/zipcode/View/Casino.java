@@ -58,8 +58,16 @@ public class Casino {
                     playAgram();
                     break;
 
+                case "RUSSIAN ROULETTE":
+                    playRussianRoulette();
+                    break;
+
                 case "BACCARAT":
                     playBaccarat();
+                    break;
+
+                case "WAR":
+                    playWar();
                     break;
 
                 case "QUIT":
@@ -90,42 +98,46 @@ public class Casino {
     }
 
     public void playAgram() {
-
         List<Integer> bets = new ArrayList<Integer>();
         int length = engine.getPlayers().size();
         int startingPlayer;
         int currentPlayer;
+        String response;
         Display.agramWelcome();
 
-        for (int i = 0; i < length; i++) {
-            bets.add(requestBet());
-        }
-
-        engine.initializeAgram(bets);
-
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < length; j++) {
-                if (j > 0) {
-                    Display.printAgram("The current suit is " + engine.getAgramPlayedSuit());
-                }
-                startingPlayer = engine.getAgramStartingPlayer();
-                currentPlayer = (startingPlayer + j) % length;
-                Display.printAgram("Player " + (currentPlayer + 1) + " select a card by number.");
-                Display.printAgram(engine.getAgramHand(currentPlayer));
-                while (!(engine.playAgram(ui.getInt(), currentPlayer))) {
-                    Display.printAgram("You cannot play that card.");
-                }
-                Display.printAgram("Player " + (currentPlayer + 1) + " played " + engine.getAgramLastPlayed());
+        do {
+            for (int i = 0; i < length; i++) {
+                bets.add(requestBet());
             }
-            engine.finishAgramRound();
 
-        }
+            engine.initializeAgram(bets);
 
-        engine.settleAgramBets(bets);
+            for (int i = 0; i < 6; i++) {
+                for (int j = 0; j < length; j++) {
+                    if (j > 0) {
+                        Display.printAgram("The current suit is " + engine.getAgramPlayedSuit());
+                    }
+                    startingPlayer = engine.getAgramStartingPlayer();
+                    currentPlayer = (startingPlayer + j) % length;
+                    Display.printAgram("Player " + (currentPlayer + 1) + " select a card by number.");
+                    Display.printAgram(engine.getAgramHand(currentPlayer));
+                    while (!(engine.playAgram(ui.getInt(), currentPlayer))) {
+                        Display.printAgram("You cannot play that card.");
+                    }
+                    Display.printAgram("Player " + (currentPlayer + 1) + " played " + engine.getAgramLastPlayed());
+                }
+                engine.finishAgramRound();
 
-        for (int winnings : bets) {
-            Display.result(winnings);
-        }
+            }
+
+            engine.settleAgramBets(bets);
+
+            for (int winnings : bets) {
+                Display.result(winnings);
+            }
+            Display.playAgain();
+            response = ui.getString();
+        } while (response.toLowerCase().equals("yes"));
 
     }
 
@@ -222,7 +234,6 @@ public class Casino {
             result = result.replaceAll(regexes[i], games[i]);
 
             if (result.equals(games[i])) {
-                System.out.println(result);
                 return result;
 
             }
