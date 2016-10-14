@@ -105,6 +105,16 @@ public class Display {
     System.out.println("======@@@@======");
   }
 
+  public static void blackjackResult(int winnings){
+    if(winnings > 0){
+      youWin();
+    }else if(winnings == 0){
+      youTie();
+    }else{
+      youLose();
+    }
+  }
+
 
   public static void printAgram (String message) {
       System.out.println(message);
