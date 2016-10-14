@@ -1,6 +1,7 @@
 package io.zipcode.View;
 
 import io.zipcode.Model.Engine;
+
 import io.zipcode.Model.InvalidBetException;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class Casino {
 
     Engine engine = new Engine();
     UserInput ui = new UserInput();
+    Display display = new Display();
 
     public void startGame(){
         Display.whatsYourName();
@@ -32,47 +34,37 @@ public class Casino {
         Display.leaveCasino();
     }
 
-    public boolean gameChoice(String game) {
+    public boolean gameChoice(String game){
         //regex
-        try {
-            switch (game.toUpperCase()) {
+        try{
+            switch (game.toUpperCase()){
 
-                case "SLOTS":
-                    playSlots();
-                    break;
-//                case "BLACKJACK": playBlackjack();break;
-                case "ROULETTE":
-                    playRoulette();
-                    break;
-                case "AGRAM":
-                    playAgram();
-                    break;
+                case "BLACKJACK": playBlackjack();break;
+
+                case "QUIT": return false;
+                default:
+                    System.out.println("We did not understand your request, please try again.");return true;
             }
-        } catch (Exception e) {
+        }catch (InvalidBetException e){
+            Display.weakBet();
 
-        } finally {
+        }finally {
             return true;
         }
     }
-//                case "GO FISH": playGoFish();break;
-//                case "RUSSIAN ROULETTE": playRussianRoulette();break;
-//                case "BACCARAT": playBaccarat();break;
-//                case "WAR": playWar();break;
-//                case "QUIT": return false;
-//                default:
-//                    System.out.println("We did not understand your request, please try again.");return true;
-//            }
-//        }catch (InvalidBetException e){
-//            Display.weakBet();
-//        }catch (ZeroBalanceException z){
-//
-//        }catch (GameSizeException g){
-//
-//        }finally {
-//            return true;
-//        }
-//    }
-//
+
+    public void playBlackjack(){
+        int bet;
+        int hitStay;
+        Display.blackjackWelcome();
+        bet = requestBet();
+        engine.playBlackjack();
+        do{
+            Display.hitOrStay();
+            hitStay = ui.getInt();
+        }while (!engine.loopPortion(hitStay));
+        Display.result(engine.blackjackWinnings(bet));
+    }
 
     public void playAgram() {
 
@@ -150,9 +142,51 @@ public class Casino {
         }while (response.toUpperCase().equals("YES"));
     }
 
+
+    public void playBaccarat(){
+        Display.baccaratWelcome();
+        do{
+            int bet = requestBet();
+            Display.baccaratBetType();
+            String betType = ui.getString();
+            Display.result(engine.playBaccarat(bet,betType));
+            Display.playAgain();
+        }while (ui.getString().equalsIgnoreCase("yes"));
+    }
+    public void playRussianRoulette()
+    {
+        engine.playRussianRoulette();
+        display.rrWelcome();
+        do
+        {
+            display.rrTurn(engine.getPlayer(), engine.getRR().getCounter());
+            ui.pressEnter();
+        }while(engine.pullTrigger());
+        engine.russianroulettePayOut();
+    }
+    public void playWar()
+    {
+        String answer;
+        int bet;
+        String winner;
+        do
+        {
+            display.warWelcome();
+            bet = requestBet();
+            display.warTurn();
+            ui.pressEnter();
+            winner = engine.playWar();
+            display.keepPlaying();
+            answer = ui.getString();
+            engine.warPayOut(bet, winner);
+        }while(answer.toUpperCase().equals("YES"));
+
+    }
+
     public static void main(String[] args) {
         Casino casino = new Casino();
         casino.startGame();
         casino.enterCasino();
+
     }
 }

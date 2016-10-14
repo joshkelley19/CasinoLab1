@@ -15,7 +15,7 @@ public class Deck {
 
     public Deck() {
         this.fillDeck();
-        Collections.shuffle(this.deck);
+        shuffle();
     }
 
     private void fillDeck() {
@@ -24,10 +24,6 @@ public class Deck {
                 deck.add(new Card(suits[i], ranks[j]));
             }
         }
-    }
-
-    public List<Card> getDeck () {
-        return deck;
     }
 
     public void setDeck (List<Card> deck) {
@@ -39,7 +35,15 @@ public class Deck {
         Collections.shuffle(deck);
     }
 
+    public List<Card> getDeck() {
+        return this.deck;
+    }
+
     public Card dealCard() {
         return this.deck.remove(0);
+    }
+
+    public List<Card> getDeck(){
+        return deck;
     }
 }
