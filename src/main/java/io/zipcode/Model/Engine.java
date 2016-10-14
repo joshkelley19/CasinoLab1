@@ -1,7 +1,7 @@
 package io.zipcode.Model;
 
+
 import io.zipcode.View.Display;
-import io.zipcode.View.UserInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,13 @@ public class Engine {
     //Instance variables //
     private Roulette roulette;
     private Agram agram = new Agram();
-    private ArrayList<Player> players = new ArrayList<>();
+    private List<Player> players = new ArrayList<>(); //Change to list
     private Slots slots = new Slots();
     private boolean isRunning=true;
     private Baccarat baccarat;
     private Blackjack blackjack = new Blackjack();
+    RussianRoulette rr = new RussianRoulette();
+    War war = new War();
 
     public void createPlayer(String name, int balance){
         players.add(new Player(name,balance));
@@ -161,19 +163,71 @@ public class Engine {
 
     }
 
-    public int playBaccarat(int bet, String betType){
-        baccarat = new Baccarat(bet, betType);
+
+    public int playBaccarat() {
+
+        if (baccarat.isRunning()) {
+            baccarat.DealersThirdCard();
+            baccarat.getWinner();
+        } else {
+            return baccarat.getResult();
+        }
+        players.get(0).setBalance(baccarat.getResult());
+        return baccarat.getResult();
+    }
+
+    public int[] printScores(){
+        int[] finalScores = {baccarat.finalScorePlayer(), baccarat.finalScoreDealer()};
+        return finalScores;
+    }
+
+    public void setupBaccarat(int bet, String betType) throws InvalidBetException{
+        baccarat = new Baccarat(placeBet(bet), betType);
         baccarat.firstDeal();
         baccarat.CheckplayerSum();
         baccarat.CheckDealerSum();
         baccarat.playersThirdCard();
-        if(baccarat.isRunning()){
-            baccarat.DealersThirdCard();
-            baccarat.getWinner();
-        }else{
-            return baccarat.getResult();
-        }
-        return baccarat.getResult();
+
+    }
+
+
+
+    public List getPlayer()
+    {
+      return players;
+    }
+    public void playRussianRoulette()
+    {
+        rr.loadGun();
+        boolean keepGoing = true;
+        rr.fillRoster(players);
+    }
+    public boolean pullTrigger()
+    {
+        return rr.pullTrigger(rr.getCounter(), rr.getBullet());
+    }
+    public void russianroulettePayOut()
+    {
+        rr.russianRoulettePayOut(players, rr.getBullet());
+    }
+    public RussianRoulette getRR()
+    {
+        return rr;
+    }
+    public void plusCounter()
+    {
+        rr.plusCounter();
+    }
+    public String playWar()
+    {
+        return war.dealCards();
+    }
+    public void warPayOut(int bet, String winner)
+    {
+        players.get(0).setBet(bet);
+        war.warPayOut(players, winner);
+
+
 
     }
 

@@ -1,10 +1,14 @@
 package io.zipcode.View;
 
+import io.zipcode.Model.Player;
+
+import java.util.List;
 import io.zipcode.Model.Blackjack;
 import io.zipcode.Model.Card;
 import io.zipcode.Model.Player;
 
-import java.util.*;
+
+
 
 /**
  * Created by joshuakelley on 10/12/16.
@@ -19,14 +23,60 @@ public class Display {
   }
 
   public static void welcomeMessage() {
+    System.out.println("  __  __       _     _ _         _____          _             \n" +
+            " |  \\/  |     | |   (_) |       / ____|        (_)            \n" +
+            " | \\  / | ___ | |__  _| | ___  | |     __ _ ___ _ _ __   ___  \n" +
+            " | |\\/| |/ _ \\| '_ \\| | |/ _ \\ | |    / _` / __| | '_ \\ / _ \\ \n" +
+            " | |  | | (_) | |_) | | |  __/ | |___| (_| \\__ \\ | | | | (_) |\n" +
+            " |_|  |_|\\___/|_.__/|_|_|\\___|  \\_____\\__,_|___/_|_| |_|\\___/ ");
     System.out.println("Welcome to the Mobile Casino!");
   }
 
   public static void slotsWelcome() {
+    System.out.println("               .-------.\n" +
+            "                              |Jackpot|\n" +
+            "                  ____________|_______|____________\n" +
+            "                 |  __    __    ___  _____   __    |  \n" +
+            "                 | / _\\  / /   /___\\/__   \\ / _\\   | \n" +
+            "                 | \\ \\  / /   //  //  / /\\ \\\\ \\  25|  \n" +
+            "                 | _\\ \\/ /___/ \\_//  / /  \\/_\\ \\ []| \n" +
+            "                 | \\__/\\____/\\___/   \\/     \\__/ []|\n" +
+            "                 |===_______===_______===_______===|\n" +
+            "                 ||*|\\_     |*| _____ |*|\\_     |*||\n" +
+            "                 ||*|| \\ _  |*||     ||*|| \\ _  |*||\n" +
+            "                 ||*| \\_(_) |*||*BAR*||*| \\_(_) |*||\n" +
+            "                 ||*| (_)   |*||_____||*| (_)   |*|| __\n" +
+            "                 ||*|_______|*|_______|*|_______|*||(__)\n" +
+            "                 |===_______===_______===_______===| ||\n" +
+            "                 ||*| _____ |*|\\_     |*|  ___  |*|| ||\n" +
+            "                 ||*||     ||*|| \\ _  |*| |_  | |*|| ||\n" +
+            "                 ||*||*BAR*||*| \\_(_) |*|  / /  |*|| ||\n" +
+            "                 ||*||_____||*| (_)   |*| /_/   |*|| ||\n" +
+            "                 ||*|_______|*|_______|*|_______|*||_//\n" +
+            "                 |===_______===_______===_______===|_/\n" +
+            "                 ||*|  ___  |*|   |   |*| _____ |*||\n" +
+            "                 ||*| |_  | |*|  / \\  |*||     ||*||\n" +
+            "                 ||*|  / /  |*| /_ _\\ |*||*BAR*||*||              \n" +
+            "                 ||*| /_/   |*|   O   |*||_____||*||        \n" +
+            "                 ||*|_______|*|_______|*|_______|*||\n" +
+            "                 |lc=___________________________===|\n" +
+            "                 |  /___________________________\\  |\n" +
+            "                 |   |                         |   |\n" +
+            "                _|    \\_______________________/    |_\n" +
+            "               (_____________________________________)\n");
     System.out.println("Welcome to Slots.");
   }
 
     public static void agramWelcome() {
+        System.out.println("          _____\n" +
+                "         |A .  | _____\n" +
+                "         | /.\\ ||A ^  | _____\n" +
+                "         |(_._)|| / \\ ||A _  | _____\n" +
+                "         |  |  || \\ / || ( ) ||A_ _ |\n" +
+                "         |____V||  .  ||(_'_)||( v )|\n" +
+                "                |____V||  |  || \\ / |\n" +
+                "                       |____V||  .  |\n" +
+                "                              |____V|");
         System.out.println("Welcome to Agram. Each player will be dealt 6 cards. Player 1 will got first. \n" +
                 "Each player will play a card of the same suit. If you do not have a card of \nthe same suit play " +
                 "any card. You cannot win the trick with a card of the \nincorrect suit. The winner of the last " +
@@ -34,7 +84,7 @@ public class Display {
     }
 
   public static void requestGame() {
-    System.out.println("What would you like to do?\nSlots\nBlackjack\nRoulette\nAgram\nGo Fish\nRussian Roulette\nBaccarat\nWar\n\nQuit");
+    System.out.println("What would you like to do?\nSlots\nBlackjack\nRoulette\nAgram\nGo Fish\nRussian Roulette\nBaccarat\nWar\n \nQuit");
   }
 
   public static void requestBet(){
@@ -57,6 +107,24 @@ public class Display {
   // BLACKJACK =================================================
 
   public static void blackjackWelcome(){
+    System.out.println(" .----------------.\n" +
+            "     |  _ _   MMMMM   |\n" +
+            "     | ( \" ) | o o |  |\n" +
+            "     |  `.'   \\ - /   |\n" +
+            "     |  |/  ---`W'--. |\n" +
+            "     |  |\\ |     .-') |\n" +
+            "     |     |  .-'   ) |\n" +
+            "     |     .-'      ) |\n" +
+            "     |  .-'      .-'  |\n" +
+            "     | (      .-'     |\n" +
+            "     | (   .-'  |     |\n" +
+            "     | (.-'     | \\|  |\n" +
+            "     | '--.M.---  /|  |\n" +
+            "     |   / - \\   .^.  |\n" +
+            "     |  | o o | ( . ) |\n" +
+            "     |   WWWWW   \" \"  |\n" +
+            "     `----------------'\n" +
+            " ");
     System.out.println("Welcome to Blackjack!");
     System.out.println("Place your bet:");
   }
@@ -122,6 +190,13 @@ public class Display {
 
 
   public static void rouletteWelcome() {
+    System.out.println("  _____             _      _   _       \n" +
+            " |  __ \\           | |    | | | |      \n" +
+            " | |__) |___  _   _| | ___| |_| |_ ___ \n" +
+            " |  _  // _ \\| | | | |/ _ \\ __| __/ _ \\\n" +
+            " | | \\ \\ (_) | |_| | |  __/ |_| ||  __/\n" +
+            " |_|  \\_\\___/ \\__,_|_|\\___|\\__|\\__\\___|\n" +
+            "                                       ");
     System.out.println("Welcome to Roulette!");
   }
 
@@ -153,7 +228,98 @@ public class Display {
   }
 
   public static void baccaratWelcome(){
+    System.out.println("              __                                               \n" +
+            "        _..-''--'----_.                                        \n" +
+            "      ,''.-''| .---/ _`-._                                     \n" +
+            "    ,' \\ \\  ;| | ,/ / `-._`-.                                  \n" +
+            "  ,' ,',\\ \\( | |// /,-._  / /                                  \n" +
+            "  ;.`. `,\\ \\`| |/ / |   )/ /                                   \n" +
+            " / /`_`.\\_\\ \\| /_.-.'-''/ /                                    \n" +
+            "/ /_|_:.`. \\ |;'`..')  / /                                     \n" +
+            "`-._`-._`.`.;`.\\  ,'  / /                                      \n" +
+            "    `-._`.`/    ,'-._/ /                                       \n" +
+            "      : `-/     \\`-.._/                                        \n" +
+            "      |  :      ;._ (                                          \n" +
+            "      :  |      \\  ` \\                                         \n" +
+            "       \\         \\   |                                         \n" +
+            "        :        :   ;                                         \n" +
+            "        |           /                                          \n" +
+            "        ;         ,'                                           \n" +
+            "       /         /                                             \n" +
+            "      /         /                                              \n" +
+            "               / SSt    ");
     System.out.println("Welcome to Baccarat!");
+  }
+
+  public static void hands(int x, int y){
+    System.out.println("Players hand was: "+x);
+    System.out.println("Banks hand was: "+y);
+
+
+  }
+
+  public static void printFinalScores(int[] finalScores) {
+    System.out.println("Player's final Score: " + finalScores[0] + "    Bank's final Score: " + finalScores[1]);
+  }
+
+  public void rrTurn(List<Player> players, int counter)
+  {
+    System.out.println("");
+    System.out.println(players.get(counter).getName() + "'s turn.");
+    System.out.println("Press enter to pull the trigger:");
+  }
+  public void warTurn(){ System.out.println("Press enter to draw:"); }
+  public void bang() {System.out.println("-Bang!-"); }
+  public void click() {System.out.println("-click-"); }
+
+
+  public void tie()
+  {
+    System.out.println("");
+    System.out.println("Tie");
+    System.out.println("War initiated!");
+  }
+  public void rrWelcome(){
+    System.out.println("        (_/-------------_______________________)\n" +
+            "          `|  /~~~~~~~~~~\\                       |\n" +
+            "           ;  |--------(-||______________________|\n" +
+            "           ;  |--------(-| ____________|\n" +
+            "           ;  \\__________/'\n" +
+            "         _/__         ___;\n" +
+            "      ,~~    |  __--~~     Welcome to Russian Roulette:\n" +
+            "     '        ~~| (  |     its a blast!\n" +
+            "    '      '~~  `____'\n" +
+            "   '      '\n" +
+            "  '      `\n" +
+            " '       `\n" +
+            "'--------`");
+
+  };
+  public void keepPlaying()
+  {
+    System.out.println("Do you want to keep playing?: yes/no");
+  }
+  public void displayCards(Card playersCard, Card dealersCard)
+  {
+    System.out.println("");
+    System.out.println("You drew a " +playersCard.getRank()+" of "+playersCard.getSuit());
+    System.out.println("Dealer drew a " +dealersCard.getRank()+" of "+dealersCard.getSuit());
+  }
+  public void warWelcome()
+  {
+    System.out.println("                     ______\n" +
+            "                   .-\"      \"-.\n" +
+            "                  /            \\\n" +
+            "                 |              |\n" +
+            "                 |,  .-.  .-.  ,|\n" +
+            "                 | )(__/  \\__)( |\n" +
+            "                 |/     /\\     \\|       War:\n" +
+            "       (@_       (_     ^^     _)       war never changes\n" +
+            "  _     ) \\_______\\__|IIIIII|__/__________________________\n" +
+            " (_)@8@8{}<________|-\\IIIIII/-|___________________________>\n" +
+            "        )_/        \\          /\n" +
+            "       (@           `--------` \n" +
+            "\n");
   }
 }
 
