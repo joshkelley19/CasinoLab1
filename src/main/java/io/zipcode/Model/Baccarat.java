@@ -8,16 +8,16 @@ import java.util.ArrayList;
 public class Baccarat{
     ArrayList<Card> playerHand= new ArrayList<>();
     ArrayList<Card> dealerHand= new ArrayList<>();
-    boolean isRunning;
+    boolean isRunning = true;
     Deck deck = new Deck();
     int result;
     int bet;
     String bettedOn;
-    int wintLoseTie;
+
 
     public Baccarat(int bet, String bettedOn){
         this.bet=bet;
-        this.bettedOn = bettedOn;
+        this.bettedOn = bettedOn.toLowerCase();
     }
 
     public int value(Card c){
@@ -182,34 +182,34 @@ public class Baccarat{
     public void getWinner(){
         if(finalScoreDealer() > finalScoreDealer()){
             if(bettedOn.equals("bank")){
-                wintLoseTie = 1;
+
                 setResult(bet);
                 isRunning = false;
             }else{
-                wintLoseTie = 2;
+
                 setResult(-bet);
                 isRunning = false;
             }
 
         }else if(finalScorePlayer() > finalScoreDealer()){
             if(bettedOn.equals("player")){
-                wintLoseTie = 1;
+
                 setResult(bet);
                 isRunning = false;
             }else{
-                wintLoseTie = 2;
+
                 setResult(-bet);
                 isRunning = false;
             }
         }else{
-            wintLoseTie = 3;
+            setResult(0);
             isRunning = false;
         }
     }
 
-
-
-
+    public boolean isRunning() {
+        return isRunning;
+    }
 
     public ArrayList<Card> getPlayerHand() {
         return playerHand;
