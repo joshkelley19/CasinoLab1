@@ -1,5 +1,7 @@
 package io.zipcode.Model;
 
+import io.zipcode.View.Display;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,19 +120,29 @@ public class Engine {
 
     }
 
-    public int playBaccarat(int bet, String betType){
-        baccarat = new Baccarat(bet, betType);
+    public int playBaccarat(){
+        if(baccarat.isRunning()){
+            baccarat.DealersThirdCard();
+            baccarat.getWinner();
+        }
+        players.get(0).setBalance(baccarat.getResult());
+        return baccarat.getResult();
+
+
+
+    }
+
+    public int[] printScores(){
+        int[] finalScores = {baccarat.finalScorePlayer(), baccarat.finalScoreDealer()};
+        return finalScores;
+    }
+
+    public void setupBaccarat(int bet, String betType) throws InvalidBetException{
+        baccarat = new Baccarat(placeBet(bet), betType);
         baccarat.firstDeal();
         baccarat.CheckplayerSum();
         baccarat.CheckDealerSum();
         baccarat.playersThirdCard();
-        if(baccarat.isRunning()){
-            baccarat.DealersThirdCard();
-            baccarat.getWinner();
-        }else{
-            return baccarat.getResult();
-        }
-        return baccarat.getResult();
 
     }
 

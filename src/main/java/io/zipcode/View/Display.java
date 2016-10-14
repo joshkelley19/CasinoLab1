@@ -85,7 +85,18 @@ public class Display {
     System.out.println("player");
   }
 
-  public void baccaratWelcome(){
+  public static void baccaratWelcome(){
     System.out.println("Welcome to Baccarat!");
+  }
+
+  public static void hands(int x, int y){
+    System.out.println("Players hand was: "+x);
+    System.out.println("Banks hand was: "+y);
+
+
+  }
+
+  public static void printFinalScores(int[] finalScores){
+    System.out.println("Player's final Score: "+finalScores[0]+"    Bank's final Score: "+finalScores[1]);
   }
 }

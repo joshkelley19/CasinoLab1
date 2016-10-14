@@ -47,6 +47,10 @@ public class Casino {
                 case "AGRAM":
                     playAgram();
                     break;
+                case "BACCARAT":
+                    playBaccarat();
+                    break;
+
             }
         } catch (Exception e) {
 
@@ -156,14 +160,12 @@ public class Casino {
             int bet = requestBet();
             Display.baccaratBetType();
             String betType = ui.getString();
-            Display.result(engine.playBaccarat(bet,betType));
+            engine.setupBaccarat(bet,betType);
+            Display.result(engine.playBaccarat());
+            Display.printFinalScores(engine.printScores());
             Display.playAgain();
         }while (ui.getString().equalsIgnoreCase("yes"));
     }
 
-    public static void main(String[] args) {
-        Casino casino = new Casino();
-        casino.startGame();
-        casino.enterCasino();
-    }
+
 }
