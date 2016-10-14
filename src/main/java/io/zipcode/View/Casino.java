@@ -27,9 +27,11 @@ public class Casino {
     public void enterCasino(){
         Display.welcomeMessage();
         String answer;
+        ui.pressEnter();
+
         do{
             Display.requestGame();
-            answer = ui.getString();
+            answer = ui.pressEnter();
         }while (gameChoice(answer));
         Display.leaveCasino();
     }
@@ -194,18 +196,19 @@ public class Casino {
     private String interpretGame (String game) {
 
         String result;
-        String [] regexes = {"b(l){1,2}a[ck]{2}ja[ck]{2}", "b(l){1,2}a[ck]{2}ja[ck]{2}", "b(l){1,2}a[ck]{2}ja[ck]{2}",
-                "b(l){1,2}a[ck]{2}ja[ck]{2}", "b(l){1,2}a[ck]{2}ja[ck]{2}", "b(l){1,2}a[ck]{2}ja[ck]{2}",
-                "b(l){1,2}a[ck]{2}ja[ck]{2}", "b(l){1,2}a[ck]{2}ja[ck]{2}"};
+        String [] regexes = {"s((l){1,2}(o){1,2}|(o){1,2}(l){1,2})(t){1,2}s{1,2}", "b(l){1,2}a(ck|kc)ja(ck|kc)",
+                "r(ou|uo)l{1,2}et{1,2}e{1,2}", "a{1,2}g{1,2}(ar|ra)m{1,2}", "go{1,2}\\s+(f|ph)(i|e){1,2}sh",
+                "rus{1,2}(ia|ai)n{1,2}\\s+r(ou|uo)l{1,2}et{1,2}e{1,2}", "ba{1,2}(c|k){1,2}arat{1,2}",
+                "wa{1,2}r{1,2}"};
 
-        String [] games = {"BLACKJACK", "BLACKJACK", "BLACKJACK", "BLACKJACK",
-                "BLACKJACK", "BLACKJACK", "BLACKJACK", "BLACKJACK"};
+        String [] games = {"SLOTS", "BLACKJACK", "ROULETTE", "AGRAM", "GO FISH",
+                "RUSSIAN ROULETTE", "BACCARAT", "WAR"};
 
         for (int i = 0; i < 8; i++) {
             result = game.toLowerCase();
-            result = result.replaceFirst(regexes[i], games[i]);
+            result = result.replaceAll(regexes[i], games[i]);
 
-            if (!(result.equals(game.toLowerCase()))) {
+            if (result.equals(games[i])) {
                 System.out.println(result);
                 return result;
             }

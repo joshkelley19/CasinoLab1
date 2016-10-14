@@ -38,7 +38,7 @@ public class Display {
     }
 
   public static void requestGame() {
-    System.out.println("What would you like to do?\nSlots\nBlackjack\nRoulette\nAgram\nGo Fish\nRussian Roulette\nBaccarat\nWar\n\nQuit");
+    System.out.println("What would you like to do?\nSlots\nBlackjack\nRoulette\nAgram\nGo Fish\nRussian Roulette\nBaccarat\nWar\n \nQuit");
   }
 
   public static void requestBet(){
