@@ -1,4 +1,4 @@
-package CasinoLab1Tests;
+package io.zipcode.Model;
 
 import io.zipcode.Model.*;
 import org.junit.Test;

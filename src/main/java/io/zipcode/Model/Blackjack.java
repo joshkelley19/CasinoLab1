@@ -35,6 +35,10 @@ public class Blackjack {
     public void clearDealerHand(){
         dealerHand.clear();
     }
+    public void clearBlackjackHandlers(){
+        blackjackCardHandlers.clear();
+    }
+
     public List<Card> getDealerHand(){
         return dealerHand;
     }
@@ -98,10 +102,21 @@ public class Blackjack {
 
         checkDealerOverdrawn();
         checkDealer21();
+        checkUserOverdrawn();
 
         return gameOver;
 
     }
+
+    public void checkUserOverdrawn(){
+        for (CardHandler x : blackjackCardHandlers) {
+            if (checkTotal(x.getHand()) > 21){
+                losers.add(x.getPlayer());
+                gameOver = true;
+            }
+        }
+    }
+
     private void checkDealerOverdrawn(){
         if(checkTotal(dealerHand) > 21) {
             for (CardHandler x : blackjackCardHandlers) {
@@ -146,24 +161,5 @@ public class Blackjack {
             blackjackCardHandlers.add(new CardHandler(x));
         }
     }
-
-    // ???
-    /* public void playBlackjack(){
-
-    }
-
-    public void printDealerHand(){
-        System.out.println(dealerHand.get(0));
-        System.out.println("[?]");
-        for(int i=2; i<dealerHand.size(); i++){
-            System.out.println(dealerHand.get(i));
-        }
-    }
-    public void printUserHand(List<String> x){
-        for(int i=0; i<x.size(); i++){
-            System.out.println(x.get(i));
-        }
-    }
-    */
 
 }
