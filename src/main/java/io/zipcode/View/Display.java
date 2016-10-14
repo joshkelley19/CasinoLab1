@@ -149,6 +149,18 @@ public class Display {
   public static void baccaratWelcome(){
     System.out.println("Welcome to Baccarat!");
   }
+
+  public static void hands(int x, int y){
+    System.out.println("Players hand was: "+x);
+    System.out.println("Banks hand was: "+y);
+
+
+  }
+
+  public static void printFinalScores(int[] finalScores) {
+    System.out.println("Player's final Score: " + finalScores[0] + "    Bank's final Score: " + finalScores[1]);
+  }
+
   public void rrTurn(List<Player> players, int counter)
   {
     System.out.println("");
@@ -158,6 +170,7 @@ public class Display {
   public void warTurn(){ System.out.println("Press enter to draw:"); }
   public void bang() {System.out.println("-Bang!-"); }
   public void click() {System.out.println("-click-"); }
+
 
   public void tie()
   {
